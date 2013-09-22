@@ -1,4 +1,6 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from studybuddy.models import User
 
 def hello(request):
-    return HttpResponse("Hello world")
+    user = User.objects.all()[0]
+    return render(request, 'hello.html', {'user': user})
