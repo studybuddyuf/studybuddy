@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.shortcuts import redirect
+from django.shortcuts import render
 from django.contrib import auth
 from django.core.context_processors import csrf
 
@@ -16,8 +18,10 @@ def auth_view(request):
 
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('/homePage')
+        return redirect('/home' )
     else:
-        return HttpResponseRedirect('/')
+        return render(request, 'startPage.html', {'errors':True})
 
-# logout
+
+def logout(request):
+    return redirect('/')

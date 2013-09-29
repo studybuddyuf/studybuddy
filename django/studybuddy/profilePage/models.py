@@ -5,5 +5,5 @@ from django.contrib.auth.models import User
 class StudyBuddyUser(models.Model):
     user = models.OneToOneField(User)
     phone = models.CharField(max_length=10)
-    school_name = models.charField(max_length=100)
+    school_name = models.CharField(max_length=100)
     year = models.PositiveSmallIntegerField()
