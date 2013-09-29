@@ -14,4 +14,14 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
+
+    # Start pgae
+    url(r'^$', 'startPage.views.main'),
+
+    # Home pgae
+    url(r'^home/$', 'homePage.views.main'),
+
+    # User authenticaton
+    url(r'^auth/$', 'startPage.views.auth_view'),
+    url(r'^logout/$', 'startPage.views.logout'),
 )
