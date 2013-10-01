@@ -17,6 +17,9 @@ urlpatterns = patterns('',
 
     # Start pgae
     url(r'^$', 'startPage.views.main'),
+    
+    # Create Page
+    url(r'^$', 'profilePage.views.main'), 
 
     # Home pgae
     url(r'^home/$', 'homePage.views.main'),
@@ -24,4 +27,5 @@ urlpatterns = patterns('',
     # User authenticaton
     url(r'^auth/$', 'startPage.views.auth_view'),
     url(r'^logout/$', 'startPage.views.logout'),
+    url(r'^register/$', 'profilePage.views.register_user'),
 )

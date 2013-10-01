@@ -22,6 +22,9 @@ def auth_view(request):
     else:
         return render(request, 'startPage.html', {'errors':True})
 
-
 def logout(request):
     return redirect('/')
+
+
+
+
