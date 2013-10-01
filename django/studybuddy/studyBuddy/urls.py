@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     
     # Create Page
     url(r'^$', 'profilePage.views.main'), 
+    url(r'^edit/$', 'profilePage.views.edit_user'),
 
     # Home pgae
     url(r'^home/$', 'homePage.views.main'),
