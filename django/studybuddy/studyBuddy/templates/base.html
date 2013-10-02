@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html>
@@ -6,7 +6,10 @@
 	<title> {% block title %} My Base Template {% endblock %}</title>
 
 	<link rel="stylesheet" type="text/css" href="{% static "assest/css/study.css" %}">
+
+
 </head>
+
 <body>
 	
 <div id="wrapper">
@@ -35,9 +38,8 @@
 		{% endblock %}
 	</aside>
 	<article>
-		{% block article%}This is the content
+		{% block article%}This is the content{% endblock %}
 		<img src="{% static "assest/img/python-logo.png" %}"/>
-		{% endblock %}
 	</article>
 
 	<br /><br />
