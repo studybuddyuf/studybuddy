@@ -1,0 +1,55 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> {% block title %} My Base Template {% endblock %}</title>
+
+	<link rel="stylesheet" type="text/css" href="{% static "assest/css/study.css" %}">
+
+
+</head>
+
+<body>
+	
+<div id="wrapper">
+
+	<header>
+	{% block banner %}
+		<img src="logo.png">
+		<h1>Welcome<h1/>
+		<br/>
+	{% endblock %}
+	</header>
+
+	<nav>
+	{% block nav %}
+		<a href=#home target="_blank">Home</a> | Search | Schools
+	{% endblock %}
+	</nav>
+
+
+	<aside>
+		{% block aside %}
+		<ul>
+			<li><a href="/articles/all">Articles</a></li>
+			<li><a href="/admin/">Admin</a></li>
+		</ul>
+		{% endblock %}
+	</aside>
+	<article>
+		{% block article%}This is the content{% endblock %}
+		<img src="{% static "assest/img/python-logo.png" %}"/>
+	</article>
+
+	<br /><br />
+	<div id = "footer">
+	{% block footer %}
+		<p/>Copyright DungeonTech
+	{% endblock %}
+	</div>
+
+</div>	
+		
+</body>
+</html>
