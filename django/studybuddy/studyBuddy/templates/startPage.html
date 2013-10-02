@@ -4,7 +4,7 @@
 	{% block title%} {{ welcome }} {% endblock %}
 
 	{% block banner %}
-		<img src="{% static "assest/img/logo.png" %}">
+		<img id="logo" src="">
 		<h1>Welcome to StudyBuddy!<h1/>
 		<br/>
 	{% endblock %}
@@ -26,13 +26,14 @@
 		<h2>New to StudyBuddy?<h2/>
 		<input id="userName" value="email"/>
 		<input id="password" value="password"/>
-		<img id = "reg" src="{% static "assest/img/RegisterButton.png" %}"/>
-		<img id = "sigin" src="{% static "assest/img/SignButton.png" %}"/><br/>
+		<img id="register" src="">
+		<img id="signin" src="">
+		<br/>
 		<a href=#home>Forgot your password?</a><br/>
 			
 			Lorem ipsum quet tortor. In sem sapien, fermentum nec ultrices at, accumsan ut orci. Curabitur eu ligula vitae erat adipiscing scelerisque. Sed vitae imperdiet magna. Sed ut ornare urna. Aenean in vehicula nisl, feugiat tempor dui.
 			
-		<a href="mailto:momoshog@ufl.edu"><img src="email.png" alt="email me at"/></a>
+		<a href="mailto:someone@ufl.edu"><img src="email.png" alt="email us at"/></a>
 	{% endblock %}
 </html>
 </body>
