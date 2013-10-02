@@ -1,0 +1,52 @@
+KEY
+	*agruments* - this signifies a the variable you wish to assign a value to, also known as the context the context
+	*url* - this signifies the url code
+	*filter* - this signifies a filter name being applied to the *agruments*
+	*val* - value assigned to variables
+
+<html>
+<body>
+	<h1/>Articles
+
+	{% for article in articles %} <==logic statement
+	<div>	
+		<h2/><a href="*url*{{ *arguments* }}/"> {{ article.title }} </a>
+		<p/> {{ *arguments* | *filter* | *filter* :" *arguments to send to filter* " }}
+	</div>
+	{% endfor %}
+</body>
+</html>
+
+///////////////////////////////////
+//////////////////////////////////
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> {% block title %} My Base Template {% endblock %}</title>
+
+	<style type="css">...</style>
+
+</head>
+
+<body>
+		{% for article in articles %}
+<div id="page">
+
+	<div id="sidebar">
+		{% block sidebar %} <== tells the Templating language that this section of the page will be named sidebar. Everything within the block can be substituted by other templates so long as they refer to sidebar
+		<ul>
+			<li><a href="/articles/all">Articles</a></li>
+			<li><a href="/admin/">Admin</a></li>
+		</ul>
+		{% endblock %}
+	</div>
+			<p/> {{ article.body|lower|truncatewords:"10" }}
+	<div id="content">
+		{% block content %}{% endblock %}
+	</div>
+</div>	
+		
+</body>
+</html>
+

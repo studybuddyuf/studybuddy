@@ -67,12 +67,13 @@ aside{
 aside img{
 	float:center;
 	margin:0 auto 0;
-	width:300px;
-	height:120px
+	width:200px;
+	height:80px
 }
 aside input{
 	float:center;
 	margin:0 auto 0;
+	font-size:20px;
 }
 #footer{
 	/*allows wrapper's back to extend to bottom of page*/
