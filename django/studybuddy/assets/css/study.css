@@ -6,6 +6,7 @@ body{
 #wrapper{
 	/*top left/right bot*/
 	/*or 0 15% 0*/
+	background:-webkit-gradient(linear, left top, left bottom, from(#EEE), to(#009));
 	width:970px;
 	margin:0 auto 0; 
 	position:relative;
