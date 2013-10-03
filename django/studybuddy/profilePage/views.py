@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib import auth
+from django.contrib.auth import authenticate, login
 from django.core.context_processors import csrf
 from forms import MyRegistrationForm
 
@@ -16,7 +17,9 @@ def register_user(request):
 	if request.method =="POST":
 		form = MyRegistrationForm(request.POST)
 		if form.is_valid():
-			form.save()
+			new_user = form.save()
+			new_user = authenticate(username=request.POST['username'], password=request.POST['password1'])
+			auth.login(request, new_user)
 			return HttpResponseRedirect('/home/')
 
 	args = {}
