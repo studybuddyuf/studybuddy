@@ -16,7 +16,7 @@ def register_user(request):
 	if request.method =="POST":
 		form = MyRegistrationForm(request.POST)
 		if form.is_valid():
-			form.save();
+			form.save()
 			return HttpResponseRedirect('/home/')
 
 	args = {}
