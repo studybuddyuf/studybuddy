@@ -1,21 +1,47 @@
-<html>
-  <head>
-      <title>StudyBuddy home page</title>
-  </head>
-  <body>
-  {% if errors == True %}
-    <p class="error">Sorry, that's not a valid username or password</p>
-  {% endif %}
+{% extends "base.html" %}
+{% load static %}
 
-    <form action="/auth/" method="post">{% csrf_token %}
-      <label for="username">User name:</label>
-      <input type="text" name="username" value="" id="username">
-      <label for="password">Password:</label>
-      <input type="password" name="password" value="" id="password">
-      <input type="submit" value="login" />
-    </form>
-    <form action="http://127.0.0.1:8000/register/">
-    	<input type="submit" value ="Create Profile" />
-    </form>
-  </body>
-</html>
+	{% block title%} {{ welcome }} {% endblock %}
+
+	
+	{% block nav %}
+		
+	{% endblock %}
+	
+	{% block article %}
+		<br/>
+		<h2>Need a study buddy?<h2/>
+			<p id = "Intro"/>
+			STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO STUDY BUDDY INTRO
+		</p>
+
+	{% endblock %}
+
+	{% block aside %}
+		{% if errors == True %}
+	   		<p class="error">Sorry, that's not a valid username or password</p>
+	  	{% endif %}
+	  	
+	    <form action="/auth/" method="post">{% csrf_token %}
+	      <label for="username">Username:</label>
+	      <br/>
+	      <input type="text" name="username" value="" id="username">
+	      <br/>
+	      <label for="password">Password:</label>
+	      <br/>
+	      <input type="password" name="password" value="" id="password">
+	      <br/>
+	      <input type="image" id="signin" src="{% static "assets/img/SignButton.png" %}" alt="login"  height="100" width="150"/>
+	    </form>
+
+	    <p>Not a User?</p>
+	    <form action="/register/">
+	    	<input type="image" id="register" src="{% static "assets/img/RegisterButton.png" %}" alt="Register" height="100" width="150"/> 
+	    </form>
+				
+		<br/><a href="/">Forgot your password?</a><br/>		
+		
+	{% endblock %}
+
+
+

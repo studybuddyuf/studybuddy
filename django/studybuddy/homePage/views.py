@@ -4,4 +4,4 @@ from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 
 def main(request):
-    return render_to_response('homePage.html')
+    return render_to_response('homePage.html', {'full_name': request.user.username})
