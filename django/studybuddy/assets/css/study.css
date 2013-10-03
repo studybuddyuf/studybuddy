@@ -1,12 +1,13 @@
 body{
 	font-family:Tahoma;
 	background-color:0x111E26;
-	background:-webkit-gradient(linear, left top, left bottom, from(#EEE), to(#009));
+	/*background:-webkit-gradient(linear, left top, left bottom, from(#EEE), to(#009)); /*chrome,safari*/
+	background:-moz-linear-gradient(45, #EEE, #009); /*firefox*/
+	background-image:linear-gradient(to bottom,rgb(245,245,245),rgb(0,0,220)); /*opera*/
 }
 #wrapper{
 	/*top left/right bot*/
 	/*or 0 15% 0*/
-	background:-webkit-gradient(linear, left top, left bottom, from(#EEE), to(#009));
 	width:970px;
 	margin:0 auto 0; 
 	position:relative;
@@ -36,15 +37,17 @@ nav{
 	height:40px;
 }
 nav a{
-	color:#F33;
+	color:orange;
 	text-decoration:none;
 }
 nav a:hover{
-	color:#09F;
-	text-decoration:underline;
+	color:#0F6;
+	text-decoration:none;
 }
 /*dont give these height so that they will move with the page*/
+
 article{
+	background-color:rgba(230,230,230,0.3);	
 	float:right;
 	width:600px;
 
@@ -56,25 +59,31 @@ article img{
 	height:120px;
 }
 article p{
-	float:left;
+	float:center;
 	width:600px;
 	font-size:20px;
 }
+
 aside{
 	float:left;
 	width:325px;
 	margin-left:15px;
 }
+aside p{
+	float:center;
+	margin:0 auto 0;
+	width:310px;
+}
 aside img{
+	/* */
+}
+aside form img{
 	float:center;
 	margin:0 auto 0;
-	width:300px;
-	height:120px
+	width:150px;
+	height:70px;
 }
-aside input{
-	float:center;
-	margin:0 auto 0;
-}
+
 #footer{
 	/*allows wrapper's back to extend to bottom of page*/
 	clear:both;
