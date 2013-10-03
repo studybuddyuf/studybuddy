@@ -2,7 +2,6 @@
 {% load static %}
 
 	{% block title%} {{ welcome }} {% endblock %}
-
 	
 	{% block nav %}
 		
@@ -31,16 +30,16 @@
 	      <br/>
 	      <input type="password" name="password" value="" id="password">
 	      <br/>
-	      <input type="image" id="signin" src="{% static "assets/img/SignButton.png" %}" alt="login"  height="100" width="150"/>
+	      <img id="signin" src="{% static "assets/img/SignButton.png" %}" alt="login"/>
 	    </form>
+		<a href="/">Forgot your password?</a><br/>		
 
+		<br/>
 	    <p>Not a User?</p>
 	    <form action="/register/">
-	    	<input type="image" id="register" src="{% static "assets/img/RegisterButton.png" %}" alt="Register" height="100" width="150"/> 
+	    	<img id="register" src="{% static "assets/img/RegisterButton.png" %}" alt="Register"/> 
 	    </form>
-				
-		<br/><a href="/">Forgot your password?</a><br/>		
-		
+						
 	{% endblock %}
 
 
