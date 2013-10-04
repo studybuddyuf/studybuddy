@@ -30,14 +30,14 @@
 	      <br/>
 	      <input type="password" name="password" value="" id="password">
 	      <br/>
-	      <img id="signin" src="{% static "assets/img/SignButton.png" %}" alt="login"/>
+	      <input type="image" id="button" src="{% static "assets/img/SignButton.png" %}" alt="login"/> 
 	    </form>
 		<a href="/">Forgot your password?</a><br/>		
 
 		<br/>
 	    <p>Not a User?</p>
 	    <form action="/register/">
-	    	<img id="register" src="{% static "assets/img/RegisterButton.png" %}" alt="Register"/> 
+         	<input type="image" id="button" src="{% static "assets/img/RegisterButton.png" %}" alt="Register"/>  
 	    </form>
 						
 	{% endblock %}

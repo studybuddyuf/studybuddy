@@ -9,7 +9,7 @@ body{
 	/*top left/right bot*/
 	/*or 0 15% 0*/
 	width:970px;
-	margin:0 auto 0; 
+	margin:0 auto 0 auto; 
 	position:relative;
 }
 header{
@@ -71,20 +71,20 @@ aside{
 }
 aside p{
 	float:center;
-	margin:0 auto 0;
+	margin:0 auto 0 auto;
 	width:310px;
 }
 aside img{
 	/* */
 }
-aside form img{
+aside form #button{
 	float:center;
-	margin:0 auto 0;
+	margin:0 auto 0 auto;
 	width:150px;
 	height:70px;
 }
 
-#footer{
+footer{
 	/*allows wrapper's back to extend to bottom of page*/
 	clear:both;
 	width:940px;
