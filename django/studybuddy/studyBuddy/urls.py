@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     
     # Create Page
     url(r'^$', 'profilePage.views.main'), 
-    url(r'^edit/$', 'profilePage.views.edit_user'),
+    url(r'^register/$', 'createPage.views.register_user'),
 
     # Home pgae
     url(r'^home/$', 'homePage.views.main'),
@@ -28,5 +28,4 @@ urlpatterns = patterns('',
     # User authenticaton
     url(r'^auth/$', 'startPage.views.auth_view'),
     url(r'^logout/$', 'startPage.views.logout'),
-    url(r'^register/$', 'profilePage.views.register_user'),
 )

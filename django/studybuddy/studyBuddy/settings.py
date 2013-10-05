@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'startPage',
     'homePage',
     'profilePage',
+    'createPage',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

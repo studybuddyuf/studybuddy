@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title%} profile {% endblock %}
+
+{% block nav %}
+		<a href='/edit'="_blank">Edit Profile</a> | Search | Schools
+{% endblock %}
+
+{% block article %}
+	<h2> Register </h2>
+	<form action = "/register/" method="post">{%csrf_token%}
+	<ul>{{form.as_ul}}
+		{{createmode}}
+	</ul>
+	
+
+	<input type="submit" value="Register" />
+	</form>
+{% endblock %}

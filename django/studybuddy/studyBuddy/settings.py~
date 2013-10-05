@@ -76,6 +76,8 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+   ('assets', os.path.join(PROJECT_DIRECTORY, 'static')),
+   #('assets' , '/home/wiz/studybuddy/django/studybuddy/static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -117,7 +119,8 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_DIRECTORY, '/startPage/templates'),
     os.path.join(PROJECT_DIRECTORY, '/homePage/templates'),
-    os.path.join(PROJECT_DIRECTORY, '/createPage/templates')
+    os.path.join(PROJECT_DIRECTORY, '/createPage/templates'),
+    os.path.join(PROJECT_DIRECTORY, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -133,7 +136,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'startPage',
     'homePage',
-    'createPage',
+    'profilePage',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
