@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-	{% block title%} {{ welcome }} {% endblock %}
-	
+	{% block title%} 
+	{% endblock %}
 	{% block nav %}
-		
 	{% endblock %}
 	
 	{% block article %}
-		<br/>
 		<h2>Need a study buddy?<h2/>
 			<p id = "Intro"/>
 			Study Buddy is a social networking site where students can meet and create study groups. Study Buddy was created primarily for University of Florida students to network, know each other, and help each other learn. 
@@ -24,20 +22,20 @@
 	    <form action="/auth/" method="post">{% csrf_token %}
 	      <label for="username">Username:</label>
 	      <br/>
-	      <input type="text" name="username" value="" id="username">
+	      <input type="text" name="username" value="" id="username" placeholder="Enter username">
 	      <br/>
 	      <label for="password">Password:</label>
 	      <br/>
-	      <input type="password" name="password" value="" id="password">
+	      <input type="password" name="password" value="" id="password" placeholder="Enter password">
 	      <br/>
-	      <input type="image" id="button" src="{% static "assets/img/SignButton.png" %}" alt="login"/> 
+	      <input type="image" id="button" src="{% static "assets/img/buttons/login-button03.png" %}" alt="login"/> 
 	    </form>
 		<a href="/">Forgot your password?</a><br/>		
 
 		<br/>
 	    <p>Not a User?</p>
 	    <form action="/register/">
-         	<input type="image" id="button" src="{% static "assets/img/RegisterButton.png" %}" alt="Register"/>  
+         	<input type="image" id="button" src="{% static "assets/img/buttons/signup-button03.png" %}" alt="Register"/>  
 	    </form>
 						
 	{% endblock %}
