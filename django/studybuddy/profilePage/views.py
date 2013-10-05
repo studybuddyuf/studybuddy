@@ -7,6 +7,8 @@ from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import csrf
 from forms import MyRegistrationForm
+from forms import MyEditForm
+from django.contrib.auth.decorators import login_required
 
 def main(request):
     c = {}
@@ -26,19 +28,21 @@ def register_user(request):
 	args.update(csrf(request))
 
 	args['form'] = MyRegistrationForm()
-	args['createmode'] = True
 	return render_to_response('profilePage.html', args)
 
+@login_required
 def edit_user(request):
-	if request.method =="POST":
-		form = MyRegistrationForm(request.POST)
+	if request.method=="POST":
+		form = MyEditForm(request.POST, instance=request.user.profile)
 		if form.is_valid():
-			form.edit();
+			form.save()
 			return HttpResponseRedirect('/home/')
-
+	else:
+		user = request.user
+		profle = user.profile
+		form = MyEditForm(instance = user.profile)
 	args = {}
 	args.update(csrf(request))
+	args['form'] = form
 
-	args['form'] = MyRegistrationForm()
-	args['createmode'] = False 
-	return render_to_response('profilePage.html', args)
+	return render_to_response('editPage.html', args)	
