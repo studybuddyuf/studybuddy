@@ -11,7 +11,7 @@
 	{% endblock %}
 	
 	{% block nav %}
-		Search | Schools | <a href='/edit'="_blank">Edit Profile</a> | <a href="/logout"="_blank">Logout</a>
+		Search | Schools | <a href='/profile'>Edit Profile</a> | <a href="/logout"="_blank">Logout</a>
 	{% endblock %}
 	
 	{% block article %}
@@ -20,7 +20,7 @@
 	{% endblock %}
 
 	{% block aside %}
-		<form action="/edit/">
+		<form action="/profile">
         	<input type="submit" value ="Edit Profile" />
     	</form>
 	{% endblock %}

@@ -17,10 +17,12 @@ urlpatterns = patterns('',
 
     # Start pgae
     url(r'^$', 'startPage.views.main'),
-    
-    # Create Page
-    url(r'^$', 'profilePage.views.main'), 
+ 
+    # Create User
     url(r'^register/$', 'createPage.views.register_user'),
+
+    # Update Profile Page
+    url(r'^profile/$', 'profilePage.views.update_profile'),
 
     # Home pgae
     url(r'^home/$', 'homePage.views.main'),

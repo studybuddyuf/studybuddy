@@ -170,3 +170,5 @@ LOGGING = {
         },
     }
 }
+
+AUTH_PROFILE_MODULE = 'profilePage.StudyBuddyUser'

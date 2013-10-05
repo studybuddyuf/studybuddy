@@ -1,12 +1,24 @@
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.shortcuts import redirect
-from django.shortcuts import render
-from django.contrib import auth
+from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
+from forms import UserProfileForm
+from django.contrib.auth.decorators import login_required
 
-def main(request):
-    c = {}
-    c.update(csrf(request))
-    return render_to_response('startPage.html', c)
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/profile')
+    else:
+        user = request.user
+        profile = user.profile
+        form = UserProfileForm(instance=profile)
+
+    args = {}
+    args.update(csrf(request))
+
+    args['form'] = form
+
+    return render_to_response('profilePage.html', args)
