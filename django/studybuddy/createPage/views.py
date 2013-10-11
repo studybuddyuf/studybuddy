@@ -1,8 +1,5 @@
-from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.shortcuts import redirect
-from django.shortcuts import render
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import csrf
@@ -26,7 +23,7 @@ def register_user(request):
 	args.update(csrf(request))
 
 	args['form'] = MyRegistrationForm()
-	args['createmode'] = True
+	
 	return render_to_response('createPage.html', args)
 
 

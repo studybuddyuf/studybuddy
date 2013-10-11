@@ -9,8 +9,8 @@
 {% block article %}
 	<h2> Register </h2>
 	<form action = "/register/" method="post">{%csrf_token%}
-	<ul>{{form.as_ul}}
-		{{createmode}}
+	<ul>
+	    {{form.as_ul}}
 	</ul>
 	
 
