@@ -26,6 +26,10 @@ urlpatterns = patterns('',
 
     # Home pgae
     url(r'^home/$', 'homePage.views.main'),
+	
+	# Schedule
+	url(r'^schedule/$', 'schedulePage.views.main'),
+	url(r'^editschedule/$', 'schedulePage.views.edit'),
 
     # User authenticaton
     url(r'^auth/$', 'startPage.views.auth_view'),
