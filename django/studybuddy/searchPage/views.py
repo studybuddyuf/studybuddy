@@ -9,9 +9,10 @@ def main(request):
 	return render_to_response('searchPage.html', c)
 
 def search(request):
-	listC = {}
-	listC['courses'] = CourseName.objects.all()
-	return render_to_response('searchPage.html', listC)
+	listC = []
+	for e in CourseName.objects.all():
+		listC.append(e)
+	return render_to_response('searchPage.html', {'list': listC})
 	
 
 
