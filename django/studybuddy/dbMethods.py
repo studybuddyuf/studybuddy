@@ -85,6 +85,7 @@ def timesItemDay(scheduleID, day):
 
 
 def scheduleTime(scheduleID):
+  list = []
   #print 'This is debug output: '+ str(scheduleID)
   try: #check if Id is a regular
     course = CourseSection.objects.get(regularScheduleID=scheduleID)
@@ -93,22 +94,26 @@ def scheduleTime(scheduleID):
     reg = False
     course = CourseSection.objects.get(discussionScheduleID=scheduleID)
   if reg:
-    print 'Lecture'
+    list.append('Lecture')
   else:
-    print 'Discussion'
-  print 'Course Name: '+ str(course.courseID)
-  print 'Semester: '+ str(course.semester)
-  print 'Section: '+ str(course.sectionNumber)
-  list = allTimesItem(scheduleID)
-  for e in list:
-    print e
+    list.append('Discussion')
+  list.append('Course Name: '+ str(course.courseID))
+  list.append('Semester: '+ str(course.semester))
+  list.append('Section: '+ str(course.sectionNumber))
+  listAll = allTimesItem(scheduleID)
+  for e in listAll:
+    list.append(e)
+  return list
+  
 
 
 
 def courseInfoUser(un):
+  list = []
   for e in scheduleListUser(un):
-    scheduleTime(e.scheduleID.scheduleID)
-  
+    list.append(scheduleTime(e.scheduleID.scheduleID))
+  return list
+    
 
 
 

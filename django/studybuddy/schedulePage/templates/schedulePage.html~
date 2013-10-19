@@ -3,6 +3,19 @@
 
 	{% block title%} home {% endblock %}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        {% block nav %}
+		<a href="/home">Home</a> | Search | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
+	{% endblock %}
+	
+        {% block edSched %}
+	    <a href="/editschedule">Edit Schedule</a>
+	{% endblock %}
+
+=======
+>>>>>>> 40c746a4a624852c62d086d5b38bf149a724e413
 	{% block nav %}
 		<a href="/home">Home</a> | Search | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
 	{% endblock %}
@@ -11,11 +24,30 @@
 	    <a href="/editschedule">Edit Schedule</a>
 	{% endblock %}	
 	
+<<<<<<< HEAD
 	{% block article %}
 		<h1>{{full_name}}'s Schedule<h1/><br><br>
 
 		<p> My classes </p>
 		
+=======
+>>>>>>> 7099ffc9a043d95ce53a64e48331cea62abeea8e
+	{% block article %}
+		<h1>{{full_name}}'s Schedule<h1/><br><br>
+
+
+		<p> My classes </p>
+		{% for sItem in scheduleItems%}
+			{% for info in sItem%}
+			  {%if info == "Lecture" or info == "Discussion"%}
+			    <h2>{{info}}</h2>
+                          {%else%}
+			    <p>{{info}}</p>
+			  {%endif%}
+			  
+			{% endfor %}
+		{% endfor %}
+>>>>>>> 40c746a4a624852c62d086d5b38bf149a724e413
 	{% endblock %}
 
 	{% block aside %}
