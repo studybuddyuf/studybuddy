@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block title%} Search StudyBuddies {% endblock %}
+
+	{% block nav %}
+		<a href="/home">Home</a> | Search | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
+	{% endblock %}
+	
+	
+	{% block article %}
+		{% for course in listC['courses'] %}
+			1
+			{{ course.courseID }}
+		{% endfor %}
+
+		<form> 
+			<select name="Class">Class
+			
+			</select>
+			<input>StudyBuddy</input>
+			<input type="button">Search</input>
+		</form>
+		
+	{% endblock %}
+
+	{% block aside %}
+	{% endblock %}

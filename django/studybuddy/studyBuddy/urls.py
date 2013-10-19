@@ -24,6 +24,9 @@ urlpatterns = patterns('',
     # Update Profile Page
     url(r'^profile/$', 'profilePage.views.update_profile'),
 
+    # Search
+    url(r'^search/$', 'searchPage.views.search'),
+
     # Home pgae
     url(r'^home/$', 'homePage.views.main'),
 	
