@@ -14,7 +14,7 @@ from profilePage.models import *
 fall13 = Semester(semester='Fall 2013', startDate='2012-01-01', endDate='2012-05-31')
 fall13.save()
 
-#adding Artificial Intelligence and Heuristics
+#Inserting in to CourseName
 sch1 = Schedule(scheduleID=1, mondayStart='09:35',mondayEnd='10:25',wednesdayStart='09:35', wednesdayEnd='10:25', fridayStart='09:35', fridayEnd='10:25')
 sch1.save()
 cn = CourseName(courseID='CAP4621',courseName='Artificial Intelligence and Heuristics')
