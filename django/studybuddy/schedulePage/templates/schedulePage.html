@@ -3,14 +3,15 @@
 
 	{% block title%} home {% endblock %}
 
-        {% block nav %}
+
+	{% block nav %}
 		<a href="/home">Home</a> | Search | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
 	{% endblock %}
 	
-        {% block edSched %}
+	{% block edSched %}
 	    <a href="/editschedule">Edit Schedule</a>
-	{% endblock %}
-
+	{% endblock %}	
+	
 	{% block article %}
 		<h1>{{full_name}}'s Schedule<h1/><br><br>
 
