@@ -71,6 +71,12 @@ nav{
 	float:center;
 
 }
+edSched{
+    float:left;
+	margin-left:10px;
+    width:100%;
+	height:20px;
+}
 nav a{
 	height:30px;
 	color:orange;

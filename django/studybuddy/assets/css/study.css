@@ -1,22 +1,40 @@
 body{
 	font-family:Tahoma;
-	background-color:0x111E26;
-	/*background:-webkit-gradient(linear, left top, left bottom, from(#EEE), to(#009)); /*chrome,safari*/
-	background:-moz-linear-gradient(45, #EEE, #009); /*firefox*/
-	background-image:linear-gradient(to bottom,rgb(245,245,245),rgb(0,0,220)); /*opera*/
-}
-#wrapper{
-	/*top left/right bot*/
-	/*or 0 15% 0*/
-	width:970px;
-	margin:0 auto 0 auto; 
-	position:relative;
-}
-header{
+	background-color:white;
 	float:left;
-	width:970px;
-	height:140px;
+	/*background:-webkit-gradient(linear, left top, left bottom, from(#EEE), to(#009)); /*chrome,safari*/
+	/*background:-moz-linear-gradient(45, #EEE, #009); /*firefox*/
+	/*background-image:linear-gradient(to bottom,rgb(245,245,245),rgb(0,0,220)); /*opera*/
+	width:100%;
+	margin:0px;
+	height: 100%;
+	}
+
+header{
+	width:100%;
 	color:0xFF222211;
+}
+#headerholder{
+	margin:0px;
+	width:100%;
+	height:90px; 
+	/*background-color:yellow;*/
+}
+
+#titleheader{
+	background-image:url('../img/studybuddy.png');
+	background-repeat:no-repeat;
+	background-color:white; /* change color to see the field*/
+/*	width:420px;
+	height:100%;
+	margin-left:230px;
+	float:left;
+
+*/
+	float:center;
+	width:100%;
+	height:100%;
+	background-position:center;
 }
 header h1{ /*Welcome to StudyBuddy!*/
 	float:left;
@@ -24,19 +42,43 @@ header h1{ /*Welcome to StudyBuddy!*/
 	margin:40px auto 0 110px;
 	/* font-size:270%; */
 }
-header img{
-	float:right;
-	width:150px;
-	height:150px;
+#logodiv{
+	/*background-image:url('../img/logo.png');*/
+	background-repeat:no-repeat;
+	width:160px;
+	height:100%;
+	margin-left:720px;
+}
+#navbeg, nav, #navend{
+	height:30px;
+	padding-top:10px;
+	display:inline-block;
 	margin-top:10px;
-	margin-right: 100px;
+}
+
+#navbeg{	
+	background-image:url('../img/navleft.png');
+	background-repeat:no-repeat;
+	/*width:20px;
+	*/
+	float:left;
 }
 nav{
-	float:left;
-	width:970px;
-	height:40px;
+	background-image:url('../img/bluebutton.png');
+	width:100%;
+	height:30px;
+	box-shadow: 6px 6px 6px #888888;
+	float:center;
+
+}
+edSched{
+    float:left;
+	margin-left:10px;
+    width:100%;
+	height:20px;
 }
 nav a{
+	height:30px;
 	color:orange;
 	text-decoration:none;
 }
@@ -47,49 +89,52 @@ nav a:hover{
 /*dont give these height so that they will move with the page*/
 
 article{
-	background-color:rgba(230,230,230,0.3);	
-	float:right;
-	width:600px;
-
-	padding:15px 15px 15px 15px;
+	/*background-color:rgba(230,230,230,0.3);	
+	*/
+	background-color:#E7FAFF;
+	padding:25px;
+	/*width:470px;*/
+	margin-left:210px;
+	margin-top:70px;	
 }
 article img{
-	float:right;
-	width:600px;
-	height:120px;
+	/**/
 }
 article p{
 	float:center;
-	width:600px;
 	font-size:20px;
 }
-
+article form{
+	list-style: none;
+}
 aside{
 	float:left;
-	width:325px;
-	margin-left:15px;
+	width:220px;
+	margin-left:10px;
+	margin-top: 20px;
 }
 aside p{
 	float:center;
 	margin:0 auto 0 auto;
-	width:310px;
 }
 aside img{
 	/* */
 }
 aside form #button{
 	float:center;
-	margin:0 auto 0 auto;
+	margin:5px auto 5px auto;
 	width:150px;
-	height:70px;
+	height:45px;
 }
 
 footer{
 	/*allows wrapper's back to extend to bottom of page*/
 	clear:both;
-	width:940px;
+	width:100%;
 	height:100px;
 	padding:0 15px 0 15px;
+	text-align: center;
+	margin: 7% 0 0 0;
 }
 
 /***Typography***/
@@ -108,4 +153,25 @@ header h1{
 	font-size:55px;
 }
 
+ul li label,.helptext{
+	display:block;
+	float:left;
+	width:100%;
+	margin:0px;
+	}
+ul {
+	list-style-image:none;
+	list-style:none;
+}
 
+.helptext{
+	color:#803300;
+	margin-bottom:10px;
+	font-size:14px;
+
+}
+
+.about_me{
+	resize: none;
+	vertical-align: top;
+}
