@@ -1,10 +1,28 @@
-# Directions
-# rm studyBuddy.db
-# python manage.py syncdb
-# DO NOT MAKE A SUPERUSER!!!! I make 1 in this file.
-# python manage shell
-# copy the content of this file and paste it in to the shell window. press enter.
+#!/bin/sh
 
+# Only run the script if it is being run from the same directory as the studyBuddy.db file
+if ! test -s ./studyBuddy.db
+then
+    echo "ERROR: This script must be run from the directory where studyBuddy.db resides"
+    echo "Please change your directory to the directory which contains studyBuddy.db"
+    exit
+fi
+
+# 1. rm studyBuddy.db
+rm -f ./studyBuddy.db
+
+# Tell the user to answer "no" when prompted about creating a superuser
+echo
+echo "******************************************************************************"
+echo "***** Type \"no\" (without the quotes) when prompted to create a superuser *****"
+echo "******************************************************************************"
+echo
+
+# 2. python manage.py syncdb
+python manage.py syncdb
+
+# 3. Run commands in python shell
+python manage.py shell << HERE
 
 from django.contrib.auth.models import User
 from profilePage.models import *
@@ -92,3 +110,7 @@ sbu5 = StudyBuddyUser(user_id=5,phone = 1234567891,school_name = 'University of 
 sbu5.save()
 
 exit()
+
+HERE
+
+echo
