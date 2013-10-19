@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block title%} Search StudyBuddies {% endblock %}
+
+	{% block nav %}
+		<a href="/home">Home</a> | Search | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
+	{% endblock %}
+	
+	
+	{% block article %}
+
+
+		<form method="get" action="/doSearch/"> 
+			<input type="radio" name="searchtype" value ="course">
+			Search By Course<br/>
+		</input>
+		<input type="radio" name ="searchtype" value ="name">
+			Search By Name <br/>
+		</input>
+			Class: <select name="Class">
+			{% for course in list %}
+				<option value="{{ course.courseID }}">{{ course.courseID }}</option>
+			{% endfor %}
+			</select>
+			<br/><br/>
+			First Name: <input name="FirstName"></input>
+			<br/>
+			Last Name: <input name="LastName"></input>
+			<br/><br/>
+			<input type="submit" name="Search" value = "Search"></input>
+		</form>
+		
+	{% endblock %}
+
+	{% block aside %}
+	{% endblock %}

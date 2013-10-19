@@ -17,14 +17,22 @@ urlpatterns = patterns('',
 
     # Start pgae
     url(r'^$', 'startPage.views.main'),
-    
-    # Create Page
-    url(r'^$', 'profilePage.views.main'), 
-    url(r'^edit/$', 'profilePage.views.edit_user'),
+ 
+    # Create User
     url(r'^register/$', 'createPage.views.register_user'),
+
+    # Update Profile Page
+    url(r'^profile/$', 'profilePage.views.update_profile'),
+
+    # Search
+    url(r'^search/$', 'searchPage.views.main'),
 
     # Home pgae
     url(r'^home/$', 'homePage.views.main'),
+	
+	# Schedule
+	url(r'^schedule/$', 'schedulePage.views.main'),
+	url(r'^editschedule/$', 'schedulePage.views.edit'),
 
     # User authenticaton
     url(r'^auth/$', 'startPage.views.auth_view'),

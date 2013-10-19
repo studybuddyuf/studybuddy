@@ -122,6 +122,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIRECTORY, '/createPage/templates'),
     os.path.join(PROJECT_DIRECTORY, 'templates'),
 	os.path.join(PROJECT_DIRECTORY, '/schedulePage/templates'),
+    os.path.join(PROJECT_DIRECTORY,'/searchPage/templates'),
 )
 
 INSTALLED_APPS = (
@@ -140,6 +141,7 @@ INSTALLED_APPS = (
     'profilePage',
     'createPage',
 	'schedulePage',
+    'searchPage',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
