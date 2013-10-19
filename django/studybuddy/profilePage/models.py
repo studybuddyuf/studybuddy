@@ -77,3 +77,14 @@ class Semester(models.Model):
 
 	def __unicode__(self):
 		return self.semester
+
+class StudyBuddyRequest(models.Model):
+	requesterUserID = models.ForeignKey(StudyBuddyUser, related_name='requester')
+	requesteeUserID = models.ForeignKey(StudyBuddyUser, related_name='requestee')
+	courseID = models.ForeignKey('CourseName')
+	semester = models.ForeignKey('Semester')
+	sectionNumber = models.ForeignKey('CourseSection')
+	status = models.CharField(max_length=1)
+
+	class Meta:
+		unique_together = (('requesterUserID', 'requesteeUserID', 'courseID', 'semester', 'sectionNumber'),)
