@@ -16,6 +16,8 @@ def courseInfoUser(un):
     list.append(scheduleTime(e.scheduleID.scheduleID))
   return list
 
+#Why is CourseNumber.sectionNumber an AutoField?
+
 from profilePage.models import *
 from django.core.exceptions import ObjectDoesNotExist
 
