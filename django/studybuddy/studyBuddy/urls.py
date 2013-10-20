@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+
     url(r'^admin/', include(admin.site.urls)),
 
     # Start pgae
@@ -23,6 +24,13 @@ urlpatterns = patterns('',
 
     # Update Profile Page
     url(r'^profile/$', 'profilePage.views.update_profile'),
+
+    # Search
+    url(r'^search/$', 'searchPage.views.search'),
+
+    #email
+    url(r'^emailtest/', 'searchPage.views.emailtest'),
+    url(r'^emailResults/', 'searchPage.views.emailResults'),
 
     # Home pgae
     url(r'^home/$', 'homePage.views.main'),

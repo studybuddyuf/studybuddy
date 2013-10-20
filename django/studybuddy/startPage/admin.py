@@ -7,4 +7,4 @@ admin.site.register(Schedule)
 admin.site.register(CourseSection)
 admin.site.register(CourseName)
 admin.site.register(Semester)
-
+admin.site.register(StudyBuddyRequest)

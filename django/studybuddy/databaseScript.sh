@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Only run the script if it is being run from the same directory as the studyBuddy.db file
-if ! test -s ./studyBuddy.db
+if ! test -s ./databaseScript.sh
 then
     echo "ERROR: This script must be run from the directory where studyBuddy.db resides"
     echo "Please change your directory to the directory which contains studyBuddy.db"
