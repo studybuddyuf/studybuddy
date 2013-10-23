@@ -8,41 +8,35 @@
  <link rel="stylesheet" type="text/css" href="{% static "assets/css/study.css" %}">
 </head>
 <body>	
-	{% block banner %}
+	
 	<div id="headerholder">
-        <div id="titleheader"></div>
-        <div id="logodiv"></div>
-    </div>
-	{% endblock %}
+		{% block banner %}{% endblock %}
+        	<div id="titleheader"></div>
+        	<div id="logodiv"></div>
+   	</div>
+	
 	<div id="navbeg"></div>
 	<nav>
-	{% block nav %}
-	{% endblock %}
+	{% block nav %}{% endblock %}
 	</nav>
 	<div id="navend"></div>
-	
-	<edSched>
-	{% block edSched %}
-	{% endblock %}
-	</edSched>
-
-
+	<div id="bodywrapper">
+	<div id="edsched">
+	{% block edSched %}{% endblock %}
+	</div>
 	<aside>
-		{% block aside %}
-		{% endblock %}
+		{% block aside %}{% endblock %}
 	</aside>
 	<article>
-		{% block article%}This is the content
-		{% endblock %}
+	{% block article%}{% endblock %}
 	</article>
-
+	</div>
 	<footer>
 	{% block footer %}
 		Copyright DungeonTech <br/>
 		<a href="/admin/">Admin</a><br/>
-		<a href="mailto:someone@ufl.edu"><img src="{% static "assets/img/email.png" %}" alt="email us at"/></a>
+		<a href="mailto:someone@ufl.edu"><img src="{% static 			"assets/img/email.png" %}" alt="email us at"/></a>
 	{% endblock %}
 	</footer>
-	
 </body>
 </html>

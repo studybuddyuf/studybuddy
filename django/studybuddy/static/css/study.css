@@ -1,10 +1,9 @@
 body{
+background-image:url('../img/blueg-c.png');
+	background-repeat:repeat-x;
 	font-family:Tahoma;
 	background-color:white;
 	float:left;
-	/*background:-webkit-gradient(linear, left top, left bottom, from(#EEE), to(#009)); /*chrome,safari*/
-	/*background:-moz-linear-gradient(45, #EEE, #009); /*firefox*/
-	/*background-image:linear-gradient(to bottom,rgb(245,245,245),rgb(0,0,220)); /*opera*/
 	width:100%;
 	margin:0px;
 	height: 100%;
@@ -14,23 +13,17 @@ header{
 	width:100%;
 	color:0xFF222211;
 }
-#headerholder{
+#headerholder{ 
 	margin:0px;
 	width:100%;
 	height:90px; 
-	/*background-color:yellow;*/
 }
 
 #titleheader{
 	background-image:url('../img/studybuddy.png');
 	background-repeat:no-repeat;
-	background-color:white; /* change color to see the field*/
-/*	width:420px;
-	height:100%;
-	margin-left:230px;
-	float:left;
-
-*/
+	background-color:transparent; /* change color to see the field*/
+	margin:0px;	
 	float:center;
 	width:100%;
 	height:100%;
@@ -42,28 +35,11 @@ header h1{ /*Welcome to StudyBuddy!*/
 	margin:40px auto 0 110px;
 	/* font-size:270%; */
 }
-#logodiv{
-	/*background-image:url('../img/logo.png');*/
-	background-repeat:no-repeat;
-	width:160px;
-	height:100%;
-	margin-left:720px;
-}
-#navbeg, nav, #navend{
+nav{
 	height:30px;
 	padding-top:10px;
 	display:inline-block;
-	margin-top:10px;
-}
-
-#navbeg{	
-	background-image:url('../img/navleft.png');
-	background-repeat:no-repeat;
-	/*width:20px;
-	*/
-	float:left;
-}
-nav{
+	margin:10px 0px 30px 0px;
 	background-image:url('../img/bluebutton.png');
 	width:100%;
 	height:30px;
@@ -71,12 +47,14 @@ nav{
 	float:center;
 
 }
-edSched{
-    float:left;
+/*
+#edsched{
+   	float:left;
 	margin-left:10px;
-    width:100%;
+    	width:100%;
 	height:20px;
 }
+*/
 nav a{
 	height:30px;
 	color:orange;
@@ -89,13 +67,10 @@ nav a:hover{
 /*dont give these height so that they will move with the page*/
 
 article{
-	/*background-color:rgba(230,230,230,0.3);	
-	*/
-	background-color:#E7FAFF;
+	background-color:#ECF8FF; 
 	padding:25px;
-	/*width:470px;*/
-	margin-left:210px;
-	margin-top:70px;	
+	margin:0px 30px 0px 200px;
+	box-shadow: 6px 6px 6px 6px #888888;
 }
 article img{
 	/**/
@@ -109,9 +84,11 @@ article form{
 }
 aside{
 	float:left;
-	width:220px;
+	width:170px;
 	margin-left:10px;
-	margin-top: 20px;
+	padding-left:10px;
+	padding-right:10px;
+	/*box-shadow: 2px 2px 2px 2px #888888;*/
 }
 aside p{
 	float:center;
@@ -122,9 +99,13 @@ aside img{
 }
 aside form #button{
 	float:center;
-	margin:5px auto 5px auto;
+	margin:5px 0px 0px 0px;
 	width:150px;
 	height:45px;
+}
+/* Should change this to class textfield */
+#username, #password{
+	width:150px;
 }
 
 footer{
