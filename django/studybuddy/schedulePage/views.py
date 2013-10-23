@@ -30,34 +30,29 @@ def scheduleListUser(un):
 def allTimesItem(scheduleID):
   list = []
   schedule = Schedule.objects.get(scheduleID=scheduleID)
-  if schedule.mondayStart:
-    list.append('Monday')
-    list.append(str(schedule.mondayStart))
-    list.append(str(schedule.mondayEnd))
-  if schedule.tuesdayStart:
-    list.append('Tuesday')
-    list.append(str(schedule.tuesdayStart))
-    list.append(str(schedule.tuesdayEnd))
-  if schedule.wednesdayStart:
-    list.append('Wednesday')
-    list.append(str(schedule.wednesdayStart))
-    list.append(str(schedule.wednesdayEnd))
-  if schedule.thursdayStart:
-    list.append('Thursday')
-    list.append(str(schedule.thursdayStart))
-    list.append(str(schedule.thursdayEnd))
-  if schedule.fridayStart:
-    list.append('Friday')
-    list.append(str(schedule.fridayStart))
-    list.append(str(schedule.fridayEnd))
-  if schedule.saturdayStart:
-    list.append('Saturday')
-    list.append(str(schedule.saturdayStart))
-    list.append(str(schedule.saturdayEnd))
-  if schedule.sundayStart:
-    list.append('Sunday')
-    list.append(str(schedule.sundayStart))
-    list.append(str(schedule.sundayEnd))
+  if schedule:
+	list.append('Monday')
+ 	list.append('Tuesday')
+	list.append('Wednesday')
+	list.append('Thursday')
+	list.append('Friday')
+	list.append('Saturday')
+	list.append('Sunday')
+	list.append(str(schedule.mondayStart))
+	list.append(str(schedule.tuesdayStart))
+	list.append(str(schedule.wednesdayStart))
+	list.append(str(schedule.thursdayStart))
+	list.append(str(schedule.fridayStart))
+	list.append(str(schedule.saturdayStart))
+	list.append(str(schedule.sundayStart))
+
+    	list.append(str(schedule.mondayEnd))
+   	list.append(str(schedule.tuesdayEnd))    
+    	list.append(str(schedule.wednesdayEnd))   
+    	list.append(str(schedule.thursdayEnd))   
+    	list.append(str(schedule.fridayEnd))
+	list.append(str(schedule.saturdayEnd))
+ 	list.append(str(schedule.sundayEnd))
   return list
 
 

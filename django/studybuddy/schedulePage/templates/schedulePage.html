@@ -7,22 +7,45 @@
 	<a href="/home">Home</a> | Search | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
 {% endblock %}
        
+{% block aside %}
+<a href="/editschedule">Edit Schedule</a>
+{% endblock %}
 {% block edSched %}
-    <a href="/editschedule">Edit Schedule</a>
 {% endblock %}        
-        
+   
 {% block article %}
-    <h1>{{full_name}}'s Schedule<h1/><br><br>
-	<p> My classes </p>
+<div id="schedule">
+    <div class="schname">{{full_name}}'s Schedule</div>
+	<div class="myclasses"> My classes </div>
 	{% for sItem in scheduleItems%}
 		{% for info in sItem%}
 			{%if info == "Lecture" or info == "Discussion"%}
-			    <h2>{{info}}</h2>
-            {%else%}
-			    <p>{{info}}</p>
+	 <div class="info" id="lecture">{{info}}</div>
+            {%elif "Course Name:" in info %}
+	 <div class="info" id="coursename">{{info}}</div>
+ 	{%elif "Semester:" in info %}
+	 <div class="info" id="semester">{{info}}</div>
+	{%elif "Section:" in info %}
+	 <div class="info" id="section">{{info}}</div>
+{%elif "Monday" in info %}
+	 <div class="day" id="monday">{{info}}</div>
+{%elif "Tuesday" in info %}
+	 <div class="day" id="tuesday">{{info}}</div>
+{%elif "Wednesday" in info %}
+	 <div class="day" id="wednesday">{{info}}</div>
+{%elif "Thursday" in info %}
+	 <div class="day" id="thursday">{{info}}</div>
+{%elif "Friday" in info %}
+	 <div class="day" id="friday">{{info}}</div>
+{%elif "Saturday" in info %}
+	 <div class="day" id="saturday">{{info}}</div>
+{%elif "Sunday" in info %}
+	 <div class="day" id="sunday">{{info}}</div>
+{%else %}
+	 <div class="info" id="else">{{info}}</div>
 			{%endif%}
 		{% endfor %}
 	{% endfor %}
+</div>
 {% endblock %}
-{% block aside %}
-{% endblock %}
+

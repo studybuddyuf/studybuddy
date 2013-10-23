@@ -74,6 +74,7 @@ article{
 	background-color:#ECF8FF; 
 	padding:25px;
 	margin:0px 30px 0px 200px;
+	overflow:auto; 
 	box-shadow: 6px 6px 6px 6px #888888;
 }
 article img{
@@ -160,3 +161,39 @@ ul {
 	resize: none;
 	vertical-align: top;
 }
+#schedule{
+overflow:auto; 
+width:660px;
+
+}
+#lecture{
+margin-top:10px;
+
+}
+.schname{
+width:100%;
+text-align:center;
+float:center;
+
+}
+#lecture, #semester, #section, #coursename{
+width:100%;
+float:left;
+}
+.day, #else{
+margin:1px;
+padding:0px 5px 0px 5px;
+width:80px;
+margin:0px;
+float:left;
+border-style:outset;
+border-width:1px;
+box-shadow: 1px 1px 1px 1px #888888; 
+}
+.day{
+background-color:#FF9933;
+}
+#else{
+background-color:#F0FAFF;
+}
+
