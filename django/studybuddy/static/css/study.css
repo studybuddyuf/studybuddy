@@ -101,7 +101,7 @@ aside form #button{
 	float:center;
 	margin:5px 0px 0px 0px;
 	width:150px;
-	height:45px;
+	height:45px; 
 }
 /* Should change this to class textfield */
 #username, #password{
@@ -114,7 +114,7 @@ footer{
 	width:100%;
 	height:100px;
 	padding:0 15px 0 15px;
-	text-align: center;
+	text-align: center; 
 	margin: 7% 0 0 0;
 }
 

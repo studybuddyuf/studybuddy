@@ -18,10 +18,11 @@
 		<li>
 		<input type="radio" name ="searchtype" value ="name">Search By Name</input>
 		</li>
-		<li>
-			Class: <select name="Class">
+		<li> 
+		<label for="Class">Class:</label>
+		<select name="Class">
 			{% for course in list %}
-				<option value="{{ course.courseID }}">{{ course.courseID }}</option>
+			<option value="{{ course.courseID }}">{{ course.courseID }}</option>
 			{% endfor %}
 			</select>
 		</li>
