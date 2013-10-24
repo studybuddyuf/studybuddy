@@ -8,24 +8,13 @@
  <link rel="stylesheet" type="text/css" href="{% static "assets/css/study.css" %}">
 </head>
 <body>	
-	
-	<div id="headerholder">
-		{% block banner %}{% endblock %}
-        	<div id="titleheader"></div>
-        	<div id="logodiv"></div>
-   	</div>
-	
-	<div id="navbeg"></div>
+        <div id="titleheader"></div>
 	<nav>
 	{% block nav %}{% endblock %}
 	</nav>
-	<div id="navend"></div>
 	<div id="bodywrapper">
-	<div id="edsched">
-	{% block edSched %}{% endblock %}
-	</div>
 	<aside>
-		{% block aside %}{% endblock %}
+	{% block aside %}{% endblock %}
 	</aside>
 	<article>
 	{% block article%}{% endblock %}
