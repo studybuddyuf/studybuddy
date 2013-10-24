@@ -2,72 +2,47 @@ body{
 	background-image:url('../img/blueg-c.png');
 	background-repeat:repeat-x;
 	font-family:Tahoma;
-	float:left;
-	width:100%;
 	margin:0px;
-	height: 100%;
+	overflow-x:hidden;
 	}
 
-header{
-	width:100%;
-	color:0xFF222211;
-}
-#headerholder{ 
-	margin:0px;
-	width:100%;
-	height:90px;
-	background-color: transparent; 
-}
-
 #titleheader{
-	background-color:transparent; 
+	margin:0px;	
+	float:left;
+	width:100%;
+	height:90px; 
 	background-image:url('../img/studybuddy.png');
 	background-repeat:no-repeat;
-	
-	margin:0px;	
-	float:center;
-	width:100%;
-	height:100%;
 	background-position:center;
 	
 }
-header h1{ /*Welcome to StudyBuddy!*/
-	float:left;
-	/*top rt bot lf*/
-	margin:40px auto 0 110px;
-	/* font-size:270%; */
-}
+
 nav{
+	width:100%;
 	height:30px;
+	background-image:url('../img/bluebutton.png');
+	background-repeat:repeat-x;
 	padding-top:10px;
 	padding-left:5px;
 	display:inline-block;
-	margin:0px 0px 30px 0px;
-	background-image:url('../img/bluebutton.png');
-	width:100%;
-	height:30px;
+	margin:0px 0px 30px 0px;	
 	box-shadow: 0px 3px 6px 6px #888888;
-	float:left;
+	
 }
-/*
+
 #edsched{
-   	float:left;
-	margin-left:10px;
-    	width:100%;
-	height:20px;
+	margin:0px;
 }
-*/
 nav a{
 	font-family: 'Freckle Face', cursive;
 	font-weight:bold;
 	font-size:16px;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	/*text-shadow: 4px 4px 4px black;*/
 	margin:0px 3px 0px 3px;
 	height:30px;
 	color:#FF8330;
-	/*color:#FF8330;*/
 	text-decoration:none;
+	overflow:visible;
 }
 nav a:hover{
 color:orange;
@@ -77,9 +52,10 @@ color:orange;
 article{
 	background-color:#E0F5FF;
 	padding:25px;
-	margin:0px 30px 0px 200px;
-	overflow:auto; 
-	box-shadow: 4px 4px 6px 6px #888888;
+	margin-left:220px;
+	margin-right:20px;
+	overflow:visible; 
+	box-shadow: 2px 4px 6px 6px #888888;
 	border-radius: 15px;
 }
 article img{
@@ -95,11 +71,10 @@ article form{
 aside{
 	float:left;
 	width:155px;
-	margin-left:10px;
+	margin-left:20px;
 	padding:10px;
-	box-shadow: 2px 2px 4px 4px #888888;
+	box-shadow: 0px 2px 4px 4px #888888;
 	border-radius:15px;
-	/*background-color:#FFE0B2;*/
 	background-color:#FFFEFB;
 }
 aside p{
@@ -119,9 +94,9 @@ width:100%;
 
 }
 aside form #button{
-	text-align:center;
-	float:center;
-	margin:0px 0px 0px 0px;
+	display: block;
+    	margin-left: auto;
+    	margin-right: auto;
 	width:150px;
 	height:45px; 
 }
