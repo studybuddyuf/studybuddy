@@ -75,7 +75,7 @@ color:orange;
 /*dont give these height so that they will move with the page*/
 
 article{
-	background-color:#ECF8FF; 
+	background-color:#E0F5FF;
 	padding:25px;
 	margin:0px 30px 0px 200px;
 	overflow:auto; 
@@ -94,22 +94,34 @@ article form{
 }
 aside{
 	float:left;
-	width:170px;
+	width:155px;
 	margin-left:10px;
-	padding-left:10px;
-	padding-right:10px;
-	/*box-shadow: 2px 2px 2px 2px #888888;*/
+	padding:10px;
+	box-shadow: 2px 2px 4px 4px #888888;
+	border-radius:15px;
+	/*background-color:#FFE0B2;*/
+	background-color:#FFFEFB;
 }
 aside p{
 	float:center;
-	margin:0 auto 0 auto;
+	margin:10px 0px 0px 0px;
+	
 }
 aside img{
 	/* */
 }
+#password{
+margin-bottom:15px;
+
+}
+input[type=image]{
+width:100%;
+
+}
 aside form #button{
+	text-align:center;
 	float:center;
-	margin:5px 0px 0px 0px;
+	margin:0px 0px 0px 0px;
 	width:150px;
 	height:45px; 
 }
@@ -169,6 +181,8 @@ ul {
 #schedule{
 overflow:auto; 
 width:660px;
+float:center;
+padding:5px;
 
 }
 #lecture{
@@ -191,14 +205,19 @@ padding:0px 5px 0px 5px;
 width:80px;
 margin:0px;
 float:left;
-border-style:outset;
-border-width:1px;
-box-shadow: 1px 1px 1px 1px #888888; 
+box-shadow: 0px 0px 1px 1px #888888; 
 }
 .day{
 background-color:#FF9933;
 }
 #else{
 background-color:#F0FAFF;
+}
+input[type=text],input[type=password], textarea
+{
+  -moz-border-radius: 5px;
+    border-radius: 5px;
+    border:solid 1px black;
+    padding:2px;
 }
 
