@@ -4,17 +4,29 @@
 <head>
 	<title> {% block title %} My Base Template {% endblock %}
 	</title>
-<link href='http://fonts.googleapis.com/css?family=Freckle+Face' rel='stylesheet' type='text/css'>
- <link rel="stylesheet" type="text/css" href="{% static "assets/css/study.css" %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static "assets/css/study.css" %}">
+    <script type="text/javascript" src="{% static "assets/js/script.js" %}"></script>
 </head>
 <body>	
-        <div id="titleheader"></div>
+	
+	<div id="headerholder">
+		{% block banner %}{% endblock %}
+        	<div id="titleheader"></div>
+        	<div id="logodiv"></div>
+   	</div>
+	
+	<div id="navbeg"></div>
 	<nav>
-	{% block nav %}{% endblock %}
+		{% block nav %}{% endblock %}
 	</nav>
+	<div id="navend"></div>
 	<div id="bodywrapper">
+	<div id="edsched">
+		{% block edSched %}{% endblock %}
+	</div>
 	<aside>
-	{% block aside %}{% endblock %}
+		{% block aside %}{% endblock %}
 	</aside>
 	<article>
 	{% block article%}{% endblock %}
