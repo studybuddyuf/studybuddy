@@ -4,51 +4,56 @@
 	{% block title%} Search StudyBuddies {% endblock %}
 
 	{% block nav %}
-	
-	<a href="/home">Home</a>|
-	<a href="">Search</a>|
-	<a href" ">Schools</a>|
-	<a href='/profile'>Edit Profile</a>|
-	<a href='/schedule'>Schedule</a>|	
-	<a href="/logout"="_blank">Logout</a>
-	
+		<a href="/home">Home</a> | 
+		<a href="/home">Search</a> | Schools | 
+		<a href='/profile'>Edit Profile</a> | 
+		<a href='/schedule'>Schedule</a> | 
+		<a href="/logout"="_blank">Logout</a>
 	{% endblock %}
 	
 	
 	{% block article %}
 
 
-		<form method="get" action="/doSearch/"> 
+	<form name="buddySearch" method="get" action="/doSearch/"> 
 		<ul><li>
-		<input type="radio" name="searchtype" value ="course">Search By Course</input>
+		<input type="radio" name="searchtype" value ="course" onclick='hide(this)'>Search By Course</input>
 		</li>
 		<li>
-		<input type="radio" name ="searchtype" value ="name">Search By Name</input>
+		<input type="radio" name ="searchtype" value ="name" onclick='hide(this)'>Search By Name</input>
 		</li>
-		<li> 
-		<label for="Class">Class:</label>
-		<select name="Class">
+				
+		<fieldset id="fahr">
+			<li>
+			Class: <select name="Class">
 			{% for course in list %}
-			<option value="{{ course.courseID }}">{{ course.courseID }}</option>
+				<option value="{{ course.courseID }}">{{ course.courseID }}</option>
 			{% endfor %}
 			</select>
-		</li>
-		<li>
-		<label for="FirstName">First Name:</label>
-		</li>
-		<li>
-		<input type="text" name="FirstName"></input>
-		</li>
-		<label for="LastName">Last Name:</label>
-		</li>
-		<li>
-		<input type="text" name="LastName"></input>
-		</li>
+			</li>
+		</fieldset>
+		
+		<fieldset id="cel">
+			<li>
+			<label for="FirstName">First Name:</label>
+			</li>
+			<li>
+			<input name="FirstName"></input>
+			</li>
+			<label for="LastName">Last Name:</label>
+			</li>
+			<li>
+			<input name="LastName"></input>
+			</li>
+		</fieldset>
+		
 		<li>
 		<input type="submit" name="Search" value = "Search"></input>
 		</li>
 		</ul>
-		</form>
+	</form>
+		
+		<div id="test"></div>
 		
 	{% endblock %}
 
