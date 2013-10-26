@@ -46,6 +46,7 @@ nav a{
 }
 nav a:hover{
 color:orange;
+text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
 }
 /*dont give these height so that they will move with the page*/
 
@@ -195,4 +196,18 @@ input[type=text],input[type=password], textarea
     border:solid 1px black;
     padding:2px;
 }
+#forgot, #notuser{
+	margin-left:10px;
+	font-size:14px;
+}
+#notuser{
+	margin-top:15px;
+}
+/* firefox */
+@-moz-document url-prefix() {
+#forgot, #notuser{
+	font-size:12px;
+}
+
+} /* firefox */
 
