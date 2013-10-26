@@ -6,11 +6,37 @@
 	{% block nav %}
 		<a href="/home">Home</a> | Search | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
 	{% endblock %}
-	
-	{% block article %}
 
-		<p> Edit </p>
-		
+	{% block article %}
+    <h1> Remove Class </h1>
+	<form action="PageObjects" method="post">  
+	  <select name="scheduleItems">
+    <option selected="selected" disabled>Choose Class:</option>
+	 {% for sItem in scheduleItems%}
+		{% for info in sItem%}
+			{%if "Course Name:" in info %}
+            <option value="{{info}}">{{info}}</option>
+			{% endif %}
+		{% endfor %}
+    {% endfor %}		
+    </select>
+	<input type="submit" value="Remove">
+	</form>
+	
+	<h2> Add Class </h2>
+	
+	<form action="PageObjects" method="post">  
+	<select name="sectionItems">
+	<option selected="selected" disabled>Choose Class:</option>
+    {% for sItem in sectionNumbers%}
+            <option value="{{sItem}}">{{sItem}}</option>
+    {% endfor %}	
+    </select>
+	<input type="submit" value="Add">
+	</form>
+	
+	
+
 	{% endblock %}
 
 	{% block aside %}
