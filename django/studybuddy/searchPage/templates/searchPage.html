@@ -15,7 +15,7 @@
 	{% block article %}
 
 
-	<form name="buddySearch" method="get" action="/doSearch/"> 
+	<form name="buddySearch" method="post" action="/doSearch/"> {% csrf_token %} 
 		<ul><li>
 		<input type="radio" name="searchtype" value ="course" onclick='hide(this)'>Search By Course</input>
 		</li>
