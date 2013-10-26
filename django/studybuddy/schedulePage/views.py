@@ -7,8 +7,20 @@ def main(request):
     return render_to_response('schedulePage.html', {'full_name': request.user.username, 'scheduleItems': courseInfoUser(request.user.username)})
 
 def edit(request):
-    return render_to_response('editSchedulePage.html')
-
+    return render_to_response('editSchedulePage.html', {'full_name': request.user.username, 'scheduleItems': courseInfoUser(request.user.username),  'sectionNumbers': sectionObjects() })
+    
+def PageObjects(request):
+    return UserSchedule.objects.filter(userID__user__username=un)
+	
+def sectionObjects():
+	sectionList = CourseSection.objects.all()
+	courseList = CourseName.objects.all()
+	newList = []
+	for e in sectionList :
+		for i in courseList:
+			if e.courseID.courseID == i.courseID:
+				newList.append(i.courseName + ":" + str(e.sectionNumber))
+	return newList
 
 def courseInfoUser(un):
   list = []
@@ -21,6 +33,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def scheduleListUser(un):
   return UserSchedule.objects.filter(userID__user__username=un)
+  
 
 #returns a String list if times on a given day exist.
 #for example if a course was Monday 9 to 10
