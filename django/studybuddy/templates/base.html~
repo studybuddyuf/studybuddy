@@ -2,50 +2,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> {% block title %} My Base Template {% endblock %}</title>
+	<title> {% block title %} My Base Template {% endblock %}
+	</title>
 
-		<link rel="stylesheet" type="text/css" href="{% static "assets/css/study.css" %}">
+ <link rel="stylesheet" type="text/css" href="{% static "assets/css/study.css" %}">
 </head>
-<body>
-	
-<div id="wrapper">
-
-	<header>
+<body>	
 	{% block banner %}
-		<img id="logo" src={% static "assets/img/logo.png" %} />
-		<h1>Welcome to StudyBuddy!<h1/>
-		<br/>
+	<div id="headerholder">
+        <div id="titleheader"></div>
+        <div id="logodiv"></div>
+    </div>
 	{% endblock %}
-	</header>
-
+	<div id="navbeg"></div>
 	<nav>
 	{% block nav %}
-		<a href=#home target="_blank">Home</a> | Search | Schools
 	{% endblock %}
 	</nav>
+	<div id="navend"></div>
+	
+	<edSched>
+	{% block edSched %}
+	{% endblock %}
+	</edSched>
 
 
 	<aside>
 		{% block aside %}
-		<p>BASE ASIDE</p>
 		{% endblock %}
 	</aside>
 	<article>
 		{% block article%}This is the content
-		<img src="{% static "assest/img/python-logo.png" %}"/>
 		{% endblock %}
 	</article>
 
-	<br /><br />
-	<div id = "footer">
+	<footer>
 	{% block footer %}
 		Copyright DungeonTech <br/>
 		<a href="/admin/">Admin</a><br/>
 		<a href="mailto:someone@ufl.edu"><img src="{% static "assets/img/email.png" %}" alt="email us at"/></a>
 	{% endblock %}
-	</div>
+	</footer>
+<script>
+			function select() 
+			{
+				var table = document.getElementById('table');
+				for (var i=0; i<table.rows.length; i++)
+				{
+					table.rows[i].onclick=function() 
+					{
 
-</div>	
-		
+						if(!this.highlight)
+						{
+							this.origColor=this.style.backgroundColor;
+							this.style.backgroundColor='1E90FF';
+							this.highlight=true;
+						}
+						else
+						{
+							this.style.backgroundColor=this.origColor;
+							this.highlight=false;
+						}
+					}
+				}
+		</script>
+	
 </body>
 </html>

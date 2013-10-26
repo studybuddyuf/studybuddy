@@ -40,3 +40,6 @@ def emailResults(request):
 	args.update(csrf(request))
 	args['text'] = 'IT WORKED'
 	return render_to_response('emailtest.html', args)
+
+		
+		
