@@ -34,6 +34,22 @@ from django.core.exceptions import ObjectDoesNotExist
 def scheduleListUser(un):
   return UserSchedule.objects.filter(userID__user__username=un)
   
+def courseListUser(userID):
+  userScheduleList = UserSchedule.objects.filter(userID=userID)
+  courseSectionList = []
+  for schedule in userScheduleList:
+    schedule = CourseSection.objects.filter(regularScheduleID=schedule.scheduleID)
+    if schedule:
+      courseSectionList.append(schedule)
+  courseNameList = []
+  for course in courseSectionList:
+    for e in course:
+      courseNameList.append(CourseName.objects.filter(courseID=e.courseID))
+  justNameList = []
+  for course in courseNameList:
+    for att in course:
+      justNameList.append(att.courseName)
+  return justNameList
 
 #returns a String list if times on a given day exist.
 #for example if a course was Monday 9 to 10

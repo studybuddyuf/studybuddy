@@ -7,8 +7,20 @@ def main(request):
     return render_to_response('schedulePage.html', {'full_name': request.user.username, 'scheduleItems': courseInfoUser(request.user.username)})
 
 def edit(request):
-    return render_to_response('editSchedulePage.html')
-
+    return render_to_response('editSchedulePage.html', {'full_name': request.user.username, 'scheduleItems': courseInfoUser(request.user.username),  'sectionNumbers': sectionObjects() })
+    
+def PageObjects(request):
+    return UserSchedule.objects.filter(userID__user__username=un)
+	
+def sectionObjects():
+	sectionList = CourseSection.objects.all()
+	courseList = CourseName.objects.all()
+	newList = []
+	for e in sectionList :
+		for i in courseList:
+			if e.courseID.courseID == i.courseID:
+				newList.append(i.courseName + ":" + str(e.sectionNumber))
+	return newList
 
 def courseInfoUser(un):
   list = []
@@ -16,13 +28,26 @@ def courseInfoUser(un):
     list.append(scheduleTime(e.scheduleID.scheduleID))
   return list
 
-#Why is CourseNumber.sectionNumber an AutoField?
-
 from profilePage.models import *
 from django.core.exceptions import ObjectDoesNotExist
 
 def scheduleListUser(un):
   return UserSchedule.objects.filter(userID__user__username=un)
+  
+def courseListUser(userID):
+  userScheduleList = UserSchedule.objects.filter(userID=userID)
+  courseSectionList = []
+  for schedule in userScheduleList:
+    schedule = CourseSection.objects.filter(regularScheduleID=schedule.scheduleID)
+    if schedule:
+      courseSectionList.append(schedule)
+  courseNameList = []
+  for course in courseSectionList:
+    print course.semester
+
+    courseNameList.append(CourseName.objects.filter(courseID=course.courseID))
+  return coruseNameList
+
 
 #returns a String list if times on a given day exist.
 #for example if a course was Monday 9 to 10
@@ -32,34 +57,29 @@ def scheduleListUser(un):
 def allTimesItem(scheduleID):
   list = []
   schedule = Schedule.objects.get(scheduleID=scheduleID)
-  if schedule.mondayStart:
-    list.append('Monday')
-    list.append(str(schedule.mondayStart))
-    list.append(str(schedule.mondayEnd))
-  if schedule.tuesdayStart:
-    list.append('Tuesday')
-    list.append(str(schedule.tuesdayStart))
-    list.append(str(schedule.tuesdayEnd))
-  if schedule.wednesdayStart:
-    list.append('Wednesday')
-    list.append(str(schedule.wednesdayStart))
-    list.append(str(schedule.wednesdayEnd))
-  if schedule.thursdayStart:
-    list.append('Thursday')
-    list.append(str(schedule.thursdayStart))
-    list.append(str(schedule.thursdayEnd))
-  if schedule.fridayStart:
-    list.append('Friday')
-    list.append(str(schedule.fridayStart))
-    list.append(str(schedule.fridayEnd))
-  if schedule.saturdayStart:
-    list.append('Saturday')
-    list.append(str(schedule.saturdayStart))
-    list.append(str(schedule.saturdayEnd))
-  if schedule.sundayStart:
-    list.append('Sunday')
-    list.append(str(schedule.sundayStart))
-    list.append(str(schedule.sundayEnd))
+  if schedule:
+	list.append('Monday')
+ 	list.append('Tuesday')
+	list.append('Wednesday')
+	list.append('Thursday')
+	list.append('Friday')
+	list.append('Saturday')
+	list.append('Sunday')
+	list.append(str(schedule.mondayStart))
+	list.append(str(schedule.tuesdayStart))
+	list.append(str(schedule.wednesdayStart))
+	list.append(str(schedule.thursdayStart))
+	list.append(str(schedule.fridayStart))
+	list.append(str(schedule.saturdayStart))
+	list.append(str(schedule.sundayStart))
+
+    	list.append(str(schedule.mondayEnd))
+   	list.append(str(schedule.tuesdayEnd))    
+    	list.append(str(schedule.wednesdayEnd))   
+    	list.append(str(schedule.thursdayEnd))   
+    	list.append(str(schedule.fridayEnd))
+	list.append(str(schedule.saturdayEnd))
+ 	list.append(str(schedule.sundayEnd))
   return list
 
 
