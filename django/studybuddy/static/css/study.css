@@ -141,6 +141,8 @@ ul li label,.helptext{
 ul {
 	list-style-image:none;
 	list-style:none;
+    margin-top:0;
+    margin-bottom:0;
 }
 
 .helptext{

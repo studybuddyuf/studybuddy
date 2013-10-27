@@ -13,7 +13,8 @@
 
 	<h2> Edit Profile </h2>
 	<form action = "/profile/" method="post">{%csrf_token%}
-	<ul>{{form.as_ul}}</ul>
+	<ul>{{form1.as_ul}}</ul>
+	<ul>{{form2.as_ul}}</ul>
 
 	<input type="submit" value="Save" />
 	</form>
