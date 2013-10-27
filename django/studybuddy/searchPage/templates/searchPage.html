@@ -8,12 +8,12 @@
 
 	<form name="buddySearch" method="post" action="/doSearch/"> {% csrf_token %} 
 		<ul><li>
-		<input type="radio" name="searchtype" value ="course" onclick='hide(this)'>Search By Course</input>
+		<input type="radio" name="searchtype" id="course" value ="course" onclick='hide("course")'>Search By Course</input>
 		</li>
 		<li>
-		<input type="radio" name ="searchtype" value ="name" onclick='hide(this)'>Search By Name</input>
+		<input type="radio" name ="searchtype" value ="name" onclick='hide("name")'>Search By Name</input>
 		</li>
-				
+
 		<fieldset id="fahr">
 			<li>
 			Class: <select name="Class">
@@ -43,6 +43,11 @@
 		</li>
 		</ul>
 	</form>
+
+    <script>
+        document.getElementById("course").click();
+    </script>
+				
 		
 		<div id="test"></div>
 		

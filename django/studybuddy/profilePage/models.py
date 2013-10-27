@@ -84,8 +84,7 @@ class StudyBuddyRequest(models.Model):
 	requesteeUserID = models.ForeignKey(StudyBuddyUser, related_name='requestee')
 	courseID = models.ForeignKey('CourseName')
 	semester = models.ForeignKey('Semester')
-	sectionNumber = models.ForeignKey('CourseSection')
 	status = models.CharField(max_length=1)
 
 	class Meta:
-		unique_together = (('requesterUserID', 'requesteeUserID', 'courseID', 'semester', 'sectionNumber'),)
+		unique_together = (('requesterUserID', 'requesteeUserID', 'courseID', 'semester'),)
