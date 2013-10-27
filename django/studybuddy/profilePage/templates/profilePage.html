@@ -2,10 +2,6 @@
 
 {% block title%} profile {% endblock %}
 
-{% block nav %}
-		<a href='/home'>Home</a> | Search | Schools | <a href='/logout'>Logout</a>
-{% endblock %}
-
 {% block article %}
     {% for field in form %}
         {{field.error}}
