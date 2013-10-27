@@ -8,8 +8,9 @@ class StudyBuddyUser(models.Model):
     user = models.OneToOneField(User)
     phone = models.CharField(max_length=10)
     school_name = models.CharField(max_length=100)
-    year = models.PositiveSmallIntegerField(null=True)
+    year = models.PositiveSmallIntegerField(null=True, blank=True)
     schedule = models.ForeignKey('UserSchedule', null=True, blank=True)
+    about_me = models.CharField(null=True, blank=True, max_length=1000)
 
     def __unicode__(self):
 	return self.user.username
@@ -83,8 +84,7 @@ class StudyBuddyRequest(models.Model):
 	requesteeUserID = models.ForeignKey(StudyBuddyUser, related_name='requestee')
 	courseID = models.ForeignKey('CourseName')
 	semester = models.ForeignKey('Semester')
-	sectionNumber = models.ForeignKey('CourseSection')
 	status = models.CharField(max_length=1)
 
 	class Meta:
-		unique_together = (('requesterUserID', 'requesteeUserID', 'courseID', 'semester', 'sectionNumber'),)
+		unique_together = (('requesterUserID', 'requesteeUserID', 'courseID', 'semester'),)

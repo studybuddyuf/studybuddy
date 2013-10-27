@@ -1,6 +1,6 @@
 function hide(id){
 	
-	if(id.value === "course") {
+	if(id === "course") {
 		document.getElementById("fahr").disabled=false;
 		document.getElementById("cel").disabled=true;
 		
@@ -14,7 +14,7 @@ function hide(id){
 		
 	}
 	
-	if(id.value === "name") {
+	if(id === "name") {
 		document.getElementById("cel").disabled=false;
 		document.getElementById("fahr").disabled=true;
 	
