@@ -40,7 +40,8 @@ urlpatterns = patterns('',
 	url(r'^schedule/$', 'schedulePage.views.main'),
 	url(r'^editschedule/$', 'schedulePage.views.edit'),
     # Search Result
-    url(r'^searchResult/$', 'searchPage.views.searchStudyBuddy'),
+    url(r'^searchResult/$', 'searchPage.views.doSearch'),
+	url(r'^searchResultTest/$', 'searchPage.views.searchResultTest'),
 
     # User authenticaton
     url(r'^auth/$', 'startPage.views.auth_view'),

@@ -18,6 +18,16 @@ def search(request):
 	args.update(csrf(request))
 	args['list'] = listC
 	return render_to_response('searchPage.html', args)
+
+def searchResultTest(request):
+	args = {}
+	#classes = request.POST.getlist('class[]')
+	args['classes'] = request.POST.getlist('class[]')
+	#if len(classes) > 0:
+	#	args['first'] = classes[0]
+	#if len(classes) > 1:
+	#	args['second'] = classes[1]
+	return render_to_response('searchResultTest.html', args)
 	
 def emailtest(request):
 	args = {}
@@ -44,10 +54,6 @@ def emailResults(request):
 	args['text'] = 'IT WORKED'
 	return render_to_response('emailtest.html', args)
 
-<<<<<<< HEAD
-		
-		
-=======
 def doSearch(request):
 	#initialize lists
 	testing = []
@@ -87,7 +93,8 @@ def doSearch(request):
 				tup.append(item[0].status)
 			else:
 				tup.append("1")
-
+			string = tup[0]+' '+str(tup[1])
+			tup.append(string)
 			#and append that tuple to the results
 			resultsList.append(tup)
 
@@ -147,6 +154,8 @@ def doSearch(request):
 					tup.append(item2[0].status)
 				else:
 					tup.append("1")
+				string = str(tup[0])+' '+str(tup[1])
+				tup.append(string)
 				resultsList.append(tup)
 
 		
@@ -156,6 +165,6 @@ def doSearch(request):
 	args = {}
 	args['resultsList'] = resultsList
 	args['test'] = testing
-	return render_to_response('resultsTest.html', args)
-	
->>>>>>> 14c63e61aaa742721eed0ba746a8ab0d2c22ec03
+	args.update(csrf(request))
+	return render_to_response('searchResult.html', args)
+

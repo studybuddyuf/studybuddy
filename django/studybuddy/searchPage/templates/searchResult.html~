@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block title%} StudyBuddies {% endblock %}
+
+	{% block nav %}
+		<a href="/home">Home</a> | <a href="/search">Search</a> | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
+	{% endblock %}
+	
+	
+	{% block article %}
+
+			<div> Class: </div>
+			<table id="table">
+			{% for list in resultsList %}
+			<tr onclick="select()" onmouseover="" style="cursor: crosshair;">
+				{% for data in list %}
+				{% if forloop.counter != 4 %}
+				<td>
+					{{ data }}
+				</td>
+				{% endif %}
+				{% endfor %}
+			</tr>
+ 			{% endfor %}
+			</table>
+
+			<form action="/searchResultTest/" method="POST">
+				{% csrf_token %}
+				<select name = 'class[]' id = 'class' multiple style = 'visibility:hidden;'>
+					{% for e in resultsList %}
+						{% for f in e %}
+							{% if forloop.counter == 4 %}
+								<option id='{{f}}'>{{f}}</option>
+							{% endif %}
+						{% endfor %} 
+					{% endfor %}
+				</select>
+				<br/>
+				<input type="submit" name="Send StudyBuddy Requests" value="Send StudyBuddy Requests"/>
+			</form>
+		<script>
+			// Unselect all items in "class" select list
+			for(var i = 0; i < document.getElementById("class").options.length; i++) {
+				document.getElementById("class").options[i].selected = false;
+			}
+
+			// selects items in "class select list
+			function select() 
+			{
+				var table = document.getElementById('table')
+				/*div.onclick=
+				function () 
+				{
+
+					if(!this.highlight)
+					{
+						this.origColor=this.style.backgroundColor;
+						this.style.backgroundColor='#0000FF';
+						this.highlight=true;
+					}
+					else
+					{
+						this.style.backgroundColor=this.origColor;
+						this.highlight=false;
+					}
+				}*/
+				for (var i=0; i<table.rows.length; i++)
+				{
+					table.rows[i].onclick=
+					function () 
+					{
+						if(!this.highlight)
+						{
+							var element = document.getElementById((this.cells[0].innerHTML.trim()+' '+this.cells[1].innerHTML.trim()));
+							element.selected = true;
+							this.origColor=this.style.backgroundColor;
+							this.style.backgroundColor='#0000FF';
+							this.highlight=true;
+						}
+						else
+						{
+							var element = document.getElementById((this.cells[0].innerHTML.trim()+' '+this.cells[1].innerHTML.trim()));
+							element.selected = false;
+							this.style.backgroundColor=this.origColor;
+							this.highlight=false;
+						}
+					}
+				}
+			}
+		</script>
+		
+	{% endblock %}
+
+	{% block aside %}
+	{% endblock %}
+

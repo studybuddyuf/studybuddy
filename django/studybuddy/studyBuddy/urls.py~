@@ -27,6 +27,7 @@ urlpatterns = patterns('',
 
     # Search
     url(r'^search/$', 'searchPage.views.search'),
+    url(r'^doSearch/$', 'searchPage.views.doSearch'),
 
     #email
     url(r'^emailtest/', 'searchPage.views.emailtest'),
@@ -39,7 +40,7 @@ urlpatterns = patterns('',
 	url(r'^schedule/$', 'schedulePage.views.main'),
 	url(r'^editschedule/$', 'schedulePage.views.edit'),
     # Search Result
-    url(r'^searchResult/$', 'searchPage.views.searchResult'),
+    url(r'^searchResult/$', 'searchPage.views.doSearch'),
 
     # User authenticaton
     url(r'^auth/$', 'startPage.views.auth_view'),

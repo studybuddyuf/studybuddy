@@ -1,0 +1,12 @@
+<html>
+<head/>
+<body>
+	{% for e in f %}
+		{{ e }}
+	{% endfor %}
+
+	First: {{ first }}<br/>
+	Second: {{ second }}<br/>
+</body>
+
+</html>

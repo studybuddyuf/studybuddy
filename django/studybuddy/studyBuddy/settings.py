@@ -123,7 +123,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIRECTORY, 'templates'),
     os.path.join(PROJECT_DIRECTORY, '/schedulePage/templates'),
     os.path.join(PROJECT_DIRECTORY, '/searchPage/templates'),
-    os.path.join(PROJECT_DIRECTORY, '/searchResultPage/templates'),
+    os.path.join(PROJECT_DIRECTORY, '/searchResult/templates'),
 )
 
 INSTALLED_APPS = (

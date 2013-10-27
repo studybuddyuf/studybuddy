@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block title%} StudyBuddies {% endblock %}
+
+	{% block nav %}
+		<a href="/home">Home</a> | <a href="/search">Search</a> | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
+	{% endblock %}
+	
+	
+	{% block article %}
+
+
+		<form method="get" action="/doSearch/">
+		</form> 
+		
+		<!--<table id="table" border=1>-->
+			<div id=""> Class: </div>
+			<div id="table">
+			{% for newList in list %}
+			</div>
+				{% for courses in newList.courses %}
+				<div id ="{{courses.courseID}}" onclick="select('{{courses.courseID}}')">
+				{{ courses.courseID }}
+				</div>
+				{% endfor %}
+			
+ 			{% endfor %}
+		<!--</table>-->
+
+		<script>
+			selectedList = [];			
+
+			function select(courseName) 
+			{
+				var div = document.getElementById(courseName)
+				div.onclick=
+				function () 
+				{
+
+					if(!this.highlight)
+					{
+						this.origColor=this.style.backgroundColor;
+						this.style.backgroundColor='#0000FF';
+						this.highlight=true;
+					}
+					else
+					{
+						this.style.backgroundColor=this.origColor;
+						this.highlight=false;
+					}
+				}
+				/*for (var i=1; i<table.rows.length; i++)
+				{
+					div.onclick=
+					function () 
+					{
+
+						if(!this.highlight)
+						{
+							this.origColor=this.style.backgroundColor;
+							this.style.backgroundColor='#0000FF';
+							this.highlight=true;
+						}
+						else
+						{
+							this.style.backgroundColor=this.origColor;
+							this.highlight=false;
+						}
+					}
+				}*/
+			}
+
+			function selectionList()
+			{
+				
+			}
+			
+		</script>
+		
+	{% endblock %}
+
+	{% block aside %}
+	{% endblock %}
