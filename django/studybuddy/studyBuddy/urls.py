@@ -27,6 +27,7 @@ urlpatterns = patterns('',
 
     # Search
     url(r'^search/$', 'searchPage.views.search'),
+    url(r'^doSearch/$', 'searchPage.views.doSearch'),
 
     #email
     url(r'^emailtest/', 'searchPage.views.emailtest'),

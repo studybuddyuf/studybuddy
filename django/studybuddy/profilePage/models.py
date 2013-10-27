@@ -68,7 +68,7 @@ class CourseName(models.Model):
 	courseName = models.CharField(max_length=100)
 
 	def __unicode__(self):
-		return self.courseID + ": " + self.courseName
+		return self.courseID
 
 class Semester(models.Model):
 	semester = models.CharField(primary_key = True, max_length = 15)
