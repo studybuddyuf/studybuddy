@@ -1,15 +1,13 @@
+{% load static %}
 <html>
-	<head>AN HTML TEST</head>
+	<head/>
 	<body>
-		<form method="POST" action ="/emailResults/">{% csrf_token %}
-			StudyBuddy ID: <input name="ID"></input>
+		{% for i in messages %}
+			{{ i }}
 			<br/>
-			Class: <input name="Class"></input>
-			<br/><br/>
-			<input type="submit" name="Email" value = "Email"></input>
-		</form>
+		{% endfor %}
 
-		<br/>
-		{{text}}
+		<img src="{% static "assets/img/shibe.png" %}" alt=""/>
+
 	</body>
 </html>

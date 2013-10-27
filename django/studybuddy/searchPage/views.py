@@ -35,23 +35,60 @@ def emailtest(request):
 	return render_to_response('emailtest.html', args)
 
 def emailResults(request):
-	#currently, only one name value pair is posted. Later this needs
-	#to be inside another for loop
-	result = StudyBuddyUser.objects.filter(user__id=request.POST['ID'])
-	toUser = result[0]
-	result = CourseName.objects.filter(courseID=request.POST['Class'])
-	clas = result[0]
-	fromUser = request.user
-	message = 'This is an email from StudyBuddy. '+fromUser.username+' would like to study with you,'
-	message = message + ' in the class '+clas.courseID
-	message = message + '\n  wow            cool'
-	message = message + '\n      such request'
-	message = message + '\n so professional        wow'
-	message = message + '\n                 wow'
-	send_mail(('StudyBuddy Request From '+fromUser.username), message, fromUser.email, ['jacobrabb@gmail.com'], fail_silently = False)
+	results = request.POST.getlist('class[]')
+	messages = []
+	test = []
+	for i in results:
+		#split the string we get
+		longword = i.split()
+
+		#make some db 'quarries'
+		clas = "lol"
+		toUser = "lol"
+		result = StudyBuddyUser.objects.filter(user__username=longword[1])
+		if result:
+			toUser = result[0]
+		else:
+			test.append(i)
+			test.append(i.split())
+		result = CourseName.objects.filter(courseID=longword[0])
+		if result:
+			clas = result[0]
+
+		fromUser = request.user
+
+		if(clas!="lol" and toUser!="lol"):
+			#now that we know what we are doing, we need to
+			#generate the message and also alert studybuddy of our intentions
+			message = 'This is an email from StudyBuddy. '+fromUser.username+' would like to study with you,'
+			message = message + ' in the class '+clas.courseID
+			message = message + '\n  wow            cool'
+			message = message + '\n      such request'
+			message = message + '\n so professional        wow'
+			message = message + '\n                 wow'
+
+			#this line currently not working, perhaps next sprint
+			#send_mail(('StudyBuddy Request From '+fromUser.username), message, fromUser.email, ['jacobrabb@gmail.com'], fail_silently = False)
+
+			messages.append(message)
+
+			#make studybuddy aware of the request
+			newrequest = StudyBuddyRequest()
+			newrequest.status = 2
+			#hardcoded
+			newrequest.semester = Semester.objects.filter(semester="Fall 2013")[0]
+			newrequest.courseID = CourseName.objects.filter(courseID=clas.courseID)[0]
+			newrequest.requesterUserID = StudyBuddyUser.objects.filter(user=fromUser)[0]
+			newrequest.requesteeUserID = StudyBuddyUser.objects.filter(user=toUser.user)[0]
+
+			newrequest.save()
+
+
+
 	args = {}
 	args.update(csrf(request))
-	args['text'] = 'IT WORKED'
+	args['messages'] = messages
+	args['test'] = test
 	return render_to_response('emailtest.html', args)
 
 def doSearch(request):
