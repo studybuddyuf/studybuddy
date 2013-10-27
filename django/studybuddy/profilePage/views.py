@@ -8,8 +8,8 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def update_profile(request):
     if request.method == 'POST':
-        form1 = UserProfileForm(request.POST, instance=request.user.profile)
-        form2 = UserEmailForm(request.POST, instance=request.user)
+        form1 = UserEmailForm(request.POST, instance=request.user)
+        form2 = UserProfileForm(request.POST, instance=request.user.profile)
         if form1.is_valid() and form2.is_valid():
             form1.save()
             form2.save()

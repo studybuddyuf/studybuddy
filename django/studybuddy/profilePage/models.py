@@ -8,9 +8,9 @@ class StudyBuddyUser(models.Model):
     user = models.OneToOneField(User)
     phone = models.CharField(max_length=10)
     school_name = models.CharField(max_length=100)
-    year = models.PositiveSmallIntegerField(null=True)
+    year = models.PositiveSmallIntegerField(null=True, blank=True)
     schedule = models.ForeignKey('UserSchedule', null=True, blank=True)
-    about_me = models.CharField(max_length=1000)
+    about_me = models.CharField(null=True, blank=True, max_length=1000)
 
     def __unicode__(self):
 	return self.user.username
