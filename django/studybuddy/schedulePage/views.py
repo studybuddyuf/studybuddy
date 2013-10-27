@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
+from profilePage.models import *
+from django.core.exceptions import ObjectDoesNotExist
 
 def main(request):
     return render_to_response('schedulePage.html', {'full_name': request.user.username, 'scheduleItems': courseInfoUser(request.user.username)})
@@ -27,9 +29,6 @@ def courseInfoUser(un):
   for e in scheduleListUser(un):
     list.append(scheduleTime(e.scheduleID.scheduleID))
   return list
-
-from profilePage.models import *
-from django.core.exceptions import ObjectDoesNotExist
 
 def scheduleListUser(un):
   return UserSchedule.objects.filter(userID__user__username=un)
