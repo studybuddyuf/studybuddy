@@ -10,12 +10,37 @@
 	
 	{% block article %}
 
-			<div> Class: </div>
-			<table id="table">
+			<table id="table" border="0" cellspacing="0">
+			<tr>
+			<th>Class</th>
+			<th>Username</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Status</th>
+			</tr>
 			{% for list in resultsList %}
 			<tr onclick="select()" onmouseover="" style="cursor: pointer;">
 				{% for data in list %}
-				{% if forloop.counter != 4 %}
+
+				{% if forloop.counter == 3 and data == "1" %}
+				<td>
+					Available
+				</td>
+				{% elif forloop.counter == 3 and data == "2" %}
+				<td>
+					Pending
+				</td>
+				{% elif forloop.counter == 2 %}
+				<td>
+					{{ data }}
+				</td>
+				<td>
+					{{ data.user.first_name}} 
+				</td>
+				<td>					
+					{{data.user.last_name }}
+				</td> 			
+				{% elif forloop.counter != 4 %}
 				<td>
 					{{ data }}
 				</td>
@@ -45,7 +70,7 @@
 				document.getElementById("class").options[i].selected = false;
 			}
 
-			// selects items in "class select list
+			// Selects & highlights items in "class" select list
 			function select() 
 			{
 				var table = document.getElementById('table')
@@ -70,6 +95,12 @@
 					table.rows[i].onclick=
 					function () 
 					{
+						//If request is pending
+						if( this.cells[4] == 2)
+						{
+							break;
+						}
+						// Highlights and selects 
 						if(!this.highlight)
 						{
 							var element = document.getElementById((this.cells[0].innerHTML.trim()+' '+this.cells[1].innerHTML.trim()));
@@ -78,6 +109,7 @@
 							this.style.backgroundColor='#0000FF';
 							this.highlight=true;
 						}
+						// Unhighlight and unselect
 						else
 						{
 							var element = document.getElementById((this.cells[0].innerHTML.trim()+' '+this.cells[1].innerHTML.trim()));
