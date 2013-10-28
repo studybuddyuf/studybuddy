@@ -205,6 +205,19 @@ input[type=text],input[type=password], textarea
 #notuser{
 	margin-top:15px;
 }
+table#table {
+	border-collapse: collapse;
+}
+table#table td {
+	padding: 25px 20px;
+}
+table#table th {
+	color: #0000FF;
+}
+table#table #results:hover {
+	background-color: #FF8330;
+	color: #0000FF;
+}
 /* firefox */
 @-moz-document url-prefix() {
 #forgot, #notuser{
