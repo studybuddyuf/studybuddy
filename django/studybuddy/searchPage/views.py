@@ -19,6 +19,7 @@ def search(request):
 	args['list'] = listC
 	return render_to_response('searchPage.html', args)
 
+#Debugging and Testing code
 def searchResultTest(request):
 	args = {}
 	#classes = request.POST.getlist('class[]')
