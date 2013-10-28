@@ -14,10 +14,44 @@ def edit(request):
 	args = {}
 	args['full_name'] = request.user.username
 	args['scheduleItems'] = courseListUser(request.user.id)
-	args['sectionNumbers'] = sectionObjects()
+	args['sectionNumbers'] = sectionObjects(request.user.id)
 	args.update(csrf(request))
 	return render_to_response('editSchedulePage.html', args)
-    
+
+def addClass(request):
+	# We have a user ID (via request.user.id), the current semester (via CURRENT_SEMESTER), a course name,
+	# and a section number
+	# First, get the course ID based on the course name we received
+	# Next, get the regular/discussion schedule IDs for the given course ID, semester, and section number
+	# Finally, insert the regular/discussion schedule IDs
+
+	# Dictionary to hold various items
+	args = {}
+
+	# Extract course name and section number from posted item
+	courseName = request.POST['sectionItem'].split(" (section ")[0]
+	sectionNumber = request.POST['sectionItem'].split(" (section ")[1].split(")")[0]
+
+	# Get the course ID
+	course = CourseName.objects.filter(courseName = courseName)
+	courseID = course[0].courseID
+
+	# Get the regular/discussion schedule IDs
+	courseSection = CourseSection.objects.filter(courseID = courseID, semester = settings.CURRENT_SEMESTER, sectionNumber = sectionNumber)[0]
+
+	# Need an instance of a StudyBuddyUser
+	studyBuddyUser = StudyBuddyUser.objects.filter(user_id = request.user.id)[0]
+
+	# Insert the regular schedule ID
+	UserSchedule.objects.create(userID = studyBuddyUser, scheduleID = courseSection.regularScheduleID)
+
+	# Insert the discussion schedule ID, if any
+	if courseSection.discussionScheduleID is not None:
+		UserSchedule.objects.create(userID = studyBuddyUser, scheduleID = courseSection.discussionScheduleID)
+
+	# Return
+	return edit(request)
+
 def removeClass(request):
 	# We have a user ID (via request.user.id), the current semester (via CURRENT_SEMESTER), and a course name
 	# First, get the course ID based on the course name we received
@@ -48,14 +82,15 @@ def removeClass(request):
 	# Return
 	return edit(request)
 
-def sectionObjects():
+def sectionObjects(userid):
 	sectionList = CourseSection.objects.all()
 	courseList = CourseName.objects.all()
+	enrolledCourseList = courseListUser(userid)
 	newList = []
 	for e in sectionList :
 		for i in courseList:
-			if e.courseID.courseID == i.courseID:
-				newList.append(i.courseName + ":" + str(e.sectionNumber))
+			if e.courseID.courseID == i.courseID and i.courseName not in enrolledCourseList:
+				newList.append(i.courseName + " (section " + str(e.sectionNumber) + ")")
 	return newList
 
 def courseInfoUser(un):
