@@ -19,7 +19,7 @@
 			<th>Status</th>
 			</tr>
 			{% for list in resultsList %}
-			<tr onclick="select()" onmouseover="" style="cursor: pointer;">
+			<tr onclick= {% for object in list %}  {%if forloop.counter == 3 %} {% if object == "1" %} "select()" onmouseover="" style="cursor: pointer;" {% endif %}{% endif %}{% endfor %}>
 				{% for data in list %}
 
 				{% if forloop.counter == 3 and data == "1" %}
@@ -95,11 +95,6 @@
 					table.rows[i].onclick=
 					function () 
 					{
-						//If request is pending
-						if( this.cells[4] == 2)
-						{
-							break;
-						}
 						// Highlights and selects 
 						if(!this.highlight)
 						{
