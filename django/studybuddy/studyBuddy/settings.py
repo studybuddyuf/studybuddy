@@ -177,3 +177,6 @@ LOGGING = {
 }
 
 AUTH_PROFILE_MODULE = 'profilePage.StudyBuddyUser'
+
+# The current semester
+CURRENT_SEMESTER = 'Fall 2013'

@@ -4,16 +4,50 @@ from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from profilePage.models import *
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.context_processors import csrf
+from django.conf import settings
 
 def main(request):
     return render_to_response('schedulePage.html', {'full_name': request.user.username, 'scheduleItems': courseInfoUser(request.user.username)})
 
 def edit(request):
-    return render_to_response('editSchedulePage.html', {'full_name': request.user.username, 'scheduleItems': courseInfoUser(request.user.username),  'sectionNumbers': sectionObjects() })
+	args = {}
+	args['full_name'] = request.user.username
+	args['scheduleItems'] = courseListUser(request.user.id)
+	args['sectionNumbers'] = sectionObjects()
+	args.update(csrf(request))
+	return render_to_response('editSchedulePage.html', args)
     
-def PageObjects(request):
-    return UserSchedule.objects.filter(userID__user__username=un)
-	
+def removeClass(request):
+	# We have a user ID (via request.user.id), the current semester (via CURRENT_SEMESTER), and a course name
+	# First, get the course ID based on the course name we received
+	# Next, get all of the schedule IDs for the given course ID and semester
+	# Finally, remove all rows from user schedule which have our current user ID plus the semester IDs we just got
+
+	# Get the course ID
+	course = CourseName.objects.filter(courseName = request.POST['scheduleItem'])
+	courseID = course[0].courseID
+
+	# Get the sections for this course
+	courseSectionList = CourseSection.objects.filter(courseID = courseID, semester = settings.CURRENT_SEMESTER)
+
+	# Get the schedule IDs for these courses
+	scheduleIDList = []
+	for courseSection in courseSectionList:
+		# Add the regular schedule ID
+		scheduleIDList.append(courseSection.regularScheduleID.scheduleID)
+
+		# Add the discussion schedule ID, if it exists
+		if courseSection.discussionScheduleID is not None:
+			scheduleIDList.append(courseSection.discussionScheduleID.scheduleID)
+
+	# Remove the user schedule rows
+	for scheduleID in scheduleIDList:
+		UserSchedule.objects.filter(userID = request.user.id, scheduleID = scheduleID).delete()
+
+	# Return
+	return edit(request)
+
 def sectionObjects():
 	sectionList = CourseSection.objects.all()
 	courseList = CourseName.objects.all()

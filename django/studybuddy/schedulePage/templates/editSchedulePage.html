@@ -8,34 +8,51 @@
 	{% endblock %}
 
 	{% block article %}
+
     <h1> Remove Class </h1>
-	<form action="PageObjects" method="post">  
-	  <select name="scheduleItems">
+	<form action="/editschedule/removeClass/" method="post" onsubmit="return validateRemove();">  
+	  <select name="scheduleItem" id="scheduleItem">
     <option selected="selected" disabled>Choose Class:</option>
 	 {% for sItem in scheduleItems%}
-		{% for info in sItem%}
-			{%if "Course Name:" in info %}
-            <option value="{{info}}">{{info}}</option>
-			{% endif %}
-		{% endfor %}
+        <option value="{{sItem}}">{{sItem}}</option>
     {% endfor %}		
     </select>
+    {% csrf_token %}
 	<input type="submit" value="Remove">
 	</form>
 	
 	<h2> Add Class </h2>
 	
-	<form action="PageObjects" method="post">  
-	<select name="sectionItems">
+	<form action="/editschedule/addClass/" method="post" onsubmit="return validateAdd();">
+	<select name="sectionItem" id="sectionItem">
 	<option selected="selected" disabled>Choose Class:</option>
     {% for sItem in sectionNumbers%}
             <option value="{{sItem}}">{{sItem}}</option>
     {% endfor %}	
     </select>
+    {% csrf_token %}
 	<input type="submit" value="Add">
 	</form>
-	
-	
+
+    <script>
+        function validateRemove() {
+            if (document.getElementById("scheduleItem").selectedIndex == 0) {
+                alert("Please choose a class to remove");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function validateAdd() {
+            if (document.getElementById("sectionItem").selectedIndex == 0) {
+                alert("Please choose a class to add");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
 
 	{% endblock %}
 

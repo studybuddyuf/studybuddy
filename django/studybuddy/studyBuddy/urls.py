@@ -39,6 +39,8 @@ urlpatterns = patterns('',
 	# Schedule
 	url(r'^schedule/$', 'schedulePage.views.main'),
 	url(r'^editschedule/$', 'schedulePage.views.edit'),
+	url(r'^editschedule/removeClass/$', 'schedulePage.views.removeClass'),
+
     # Search Result
     url(r'^searchResult/$', 'searchPage.views.doSearch'),
 	url(r'^searchResultTest/$', 'searchPage.views.searchResultTest'),
