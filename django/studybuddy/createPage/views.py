@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import csrf
 from forms import MyRegistrationForm
+from profilePage.models import StudyBuddyUser
 
 def main(request):
     c = {}
@@ -17,6 +18,7 @@ def register_user(request):
 			new_user = form.save()
 			new_user = authenticate(username=request.POST['username'], password=request.POST['password1'])
 			auth.login(request, new_user)
+			StudyBuddyUser.objects.create(user_id = new_user.id)
 			return HttpResponseRedirect('/home/')
 
 	args = {}
