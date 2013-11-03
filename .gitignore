@@ -3,3 +3,9 @@
 *.pyc
 local_settings.py
 *.db
+
+# vim swap files
+*.swp
+
+# Editor backup files
+*.*~
