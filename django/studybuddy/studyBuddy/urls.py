@@ -33,8 +33,10 @@ urlpatterns = patterns('',
     url(r'^emailtest/', 'searchPage.views.emailtest'),
     url(r'^emailResults/', 'searchPage.views.emailResults'),
 
-    # Home pgae
+    # Home page
     url(r'^home/$', 'homePage.views.main'),
+    url(r'^acceptRequest/$', 'homePage.views.acceptRequest'),
+    url(r'rejectRequest/$', 'homePage.views.rejectRequest'),
 	
 	# Schedule
 	url(r'^schedule/$', 'schedulePage.views.main'),

@@ -4,7 +4,26 @@
 	{% block title%} home {% endblock %}
 
 	{% block article %}
-		<h1>{{full_name}}'s home page<h1/><br><br>
+		<h1>{{full_name}}'s home page</h1><br><br>
+
+		{% for request in requestList %}
+			<div class="Username">{{request.requesterUserID}}</div> <div class="CourseID">{{request.courseID}}</div> 
+			<div class="AcceptButton"> 
+				<form action="/acceptRequest/" method="POST">{%csrf_token%}
+					<input type="hidden" name="requesterUserID" value="{{request.requesterUserID}}"/>
+					<input type="hidden" name="courseID" value="{{request.courseID}}"/>
+					<input type="submit" name="Accept" value="Accept Request"/>
+				</form>
+			</div>
+			<div class="RejectButton">
+				<form action="/rejectRequest/" method="POST">{%csrf_token%}
+					<input type="hidden" name="requesterUserID" value="{{request.requesterUserID}}"/>
+					<input type="hidden" name="courseID" value="{{request.courseID}}"/>
+					<input type="submit" name="Reject" value="Reject Request"/>
+				</form>
+			</div>
+			<br>
+		{% endfor %}
 	{% endblock %}
 
 	{% block aside %}
