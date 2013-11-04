@@ -78,7 +78,7 @@ def emailResults(request):
 			newrequest = StudyBuddyRequest()
 			newrequest.status = 2
 			#hardcoded
-			newrequest.semester = Semester.objects.filter(semester="Fall 2013")[0]
+			newrequest.semester = Semester.objects.filter(semester=settings.CURRENT_SEMESTER)[0]
 			newrequest.courseID = CourseName.objects.filter(courseID=clas.courseID)[0]
 			newrequest.requesterUserID = StudyBuddyUser.objects.filter(user=fromUser)[0]
 			newrequest.requesteeUserID = StudyBuddyUser.objects.filter(user=toUser.user)[0]
