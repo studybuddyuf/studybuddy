@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from forms import UserProfileForm
 from forms import UserEmailForm
+from profilePage.models import *
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -26,4 +27,23 @@ def update_profile(request):
     args['form1'] = form1
     args['form2'] = form2
 
-    return render_to_response('profilePage.html', args)
+
+    return render_to_response('editProfilePage.html', args)
+	
+def profile(request):
+    return render_to_response('profilePage.html', {'full_name': request.user.username, 'phone': getPhone(request.user), 'schoolname': getSchoolName(request.user), 'year': getYear(request.user), 'aboutme': aboutMe(request.user), 'email': getEmail(request.user)})	
+
+def getPhone(un):
+	return StudyBuddyUser.objects.filter(user = un)[0].phone
+	
+def getSchoolName(un):
+	return StudyBuddyUser.objects.filter(user = un)[0].school_name
+
+def getYear(un):
+	return StudyBuddyUser.objects.filter(user = un)[0].year
+
+def aboutMe(un):
+		return StudyBuddyUser.objects.filter(user = un)[0].about_me
+		
+def getEmail(un):
+		return un.email

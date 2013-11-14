@@ -23,7 +23,8 @@ urlpatterns = patterns('',
     url(r'^register/$', 'createPage.views.register_user'),
 
     # Update Profile Page
-    url(r'^profile/$', 'profilePage.views.update_profile'),
+    url(r'^editprofile/$', 'profilePage.views.update_profile'),
+	url(r'^profile/$', 'profilePage.views.profile'),
 
     # Search
     url(r'^search/$', 'searchPage.views.search'),
