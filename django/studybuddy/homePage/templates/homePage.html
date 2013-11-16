@@ -4,11 +4,14 @@
 	{% block title%} home {% endblock %}
 
 	{% block article %}
-		<h1>{{full_name}}'s home page</h1><br>
+		<h1>{{full_name}}'s Home Page</h1><br><br>
+
+		<h3>Study Requests</h3>
 		{% for i in test %}
 			{{i}}
 		{% endfor %}	
 
+		<div id="request">
 		{% for request in requestList %}
 			<div class="Username">{{request.requesterUserID}}</div> <div class="CourseID">{{request.courseID}}</div> 
 			<div class="AcceptButton"> 
@@ -33,7 +36,15 @@
 		{% for i in friends %}
 			<br/><a href="/viewProfile?userID={{i.requesteeUserID}}">{{i.requesteeUserID}}</a>
 		{% endfor %}
+		</div>
 	{% endblock %}
 
 	{% block aside %}
+		<div id="buddies">
+		<dl>Study Buddies
+			{% for i in friends %}
+				<dd>{{i.requesteeUserID}}
+			{% endfor %}
+		</dl>
+		</div>
 	{% endblock %}
