@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.conf import settings
 from django.core.context_processors import csrf
 from profilePage.models import *
+from schedulePage.views import *
 
 argl = []
 
@@ -56,3 +57,12 @@ def rejectRequest(request):
 	sbRequest.save()
 
 	return main(request)
+
+def viewProfile(request):
+	user = StudyBuddyUser.objects.filter(user__username=request.GET['userID'])[0]
+	args = {}
+	args['user'] = user
+	args['full_name'] = user.user.username
+	args['scheduleItems'] = courseInfoUser(user.user.username)
+
+	return render_to_response('viewProfile.html', args)

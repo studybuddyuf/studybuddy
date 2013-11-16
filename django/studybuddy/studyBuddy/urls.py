@@ -38,6 +38,7 @@ urlpatterns = patterns('',
     url(r'^home/$', 'homePage.views.main'),
     url(r'^acceptRequest/$', 'homePage.views.acceptRequest'),
     url(r'rejectRequest/$', 'homePage.views.rejectRequest'),
+    url(r'viewProfile/$', 'homePage.views.viewProfile'),
 	
 	# Schedule
 	url(r'^schedule/$', 'schedulePage.views.main'),

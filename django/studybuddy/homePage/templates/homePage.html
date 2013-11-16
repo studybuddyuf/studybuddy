@@ -4,7 +4,7 @@
 	{% block title%} home {% endblock %}
 
 	{% block article %}
-		<h1>{{full_name}}'s home page</h1><br><br>
+		<h1>{{full_name}}'s home page</h1><br>
 		{% for i in test %}
 			{{i}}
 		{% endfor %}	
@@ -28,10 +28,10 @@
 			<br>
 		{% endfor %}
 
-		<br/><br/>
-		THESE ARE THE USERS YOU HAVE ADDED AS FRIENDS
+		<br/>
+		<b>StudyBuddies</b>
 		{% for i in friends %}
-			<br/>{{i.requesteeUserID}}
+			<br/><a href="/viewProfile?userID={{i.requesteeUserID}}">{{i.requesteeUserID}}</a>
 		{% endfor %}
 	{% endblock %}
 
