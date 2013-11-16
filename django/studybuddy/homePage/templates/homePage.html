@@ -6,7 +6,7 @@
 	{% block article %}
 		<h1>{{full_name}}'s Home Page</h1><br><br>
 
-		<h3>Study Requests</h3>
+		<h3>StudyBuddy Requests</h3>
 		{% for i in test %}
 			{{i}}
 		{% endfor %}	
@@ -30,20 +30,14 @@
 			</div>
 			<br>
 		{% endfor %}
-
-		<br/>
-		<b>StudyBuddies</b>
-		{% for i in friends %}
-			<br/><a href="/viewProfile?userID={{i.requesteeUserID}}">{{i.requesteeUserID}}</a>
-		{% endfor %}
 		</div>
 	{% endblock %}
 
 	{% block aside %}
 		<div id="buddies">
-		<dl>Study Buddies
+		<dl>StudyBuddies
 			{% for i in friends %}
-				<dd>{{i.requesteeUserID}}
+				<br/><a href="/viewProfile?userID={{i.requesteeUserID}}">{{i.requesteeUserID}}</a>
 			{% endfor %}
 		</dl>
 		</div>
