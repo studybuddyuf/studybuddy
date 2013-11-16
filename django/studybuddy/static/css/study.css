@@ -1,48 +1,48 @@
 body{
-	background-image:url('../img/blueg-c.png');
-	background-repeat:repeat-x;
-	font-family:Tahoma;
-	margin:0px;
-	overflow-x:hidden;
-	}
+        background-image:url('../img/blueg-c.png');
+        background-repeat:repeat-x;
+        font-family:Tahoma;
+        margin:0px;
+        overflow-x:hidden;
+        }
 
 #titleheader{
-	margin:0px;	
-	float:left;
-	width:100%;
-	height:90px; 
-	background-image:url('../img/studybuddy.png');
-	background-repeat:no-repeat;
-	background-position:center;
-	
+        margin:0px;        
+        float:left;
+        width:100%;
+        height:90px; 
+        background-image:url('../img/studybuddy.png');
+        background-repeat:no-repeat;
+        background-position:center;
+        
 }
 
 nav{
-	width:100%;
-	height:30px;
-	background-image:url('../img/bluebutton.png');
-	background-repeat:repeat-x;
-	padding-top:10px;
-	padding-left:5px;
-	display:inline-block;
-	margin:0px 0px 30px 0px;	
-	box-shadow: 0px 3px 6px 6px #888888;
-	
+        width:100%;
+        height:30px;
+        background-image:url('../img/bluebutton.png');
+        background-repeat:repeat-x;
+        padding-top:10px;
+        padding-left:5px;
+        display:inline-block;
+        margin:0px 0px 30px 0px;        
+        box-shadow: 0px 3px 6px 6px #888888;
+        
 }
 
 #edsched{
-	margin:0px;
+        margin:0px;
 }
 nav a{
-	font-family: 'Freckle Face', cursive;
-	font-weight:bold;
-	font-size:16px;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	margin:0px 3px 0px 3px;
-	height:30px;
-	color:#FF8330;
-	text-decoration:none;
-	overflow:visible;
+        font-family: 'Freckle Face', cursive;
+        font-weight:bold;
+        font-size:16px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        margin:0px 3px 0px 3px;
+        height:30px;
+        color:#FF8330;
+        text-decoration:none;
+        overflow:visible;
 }
 nav a:hover{
 color:orange;
@@ -51,40 +51,81 @@ text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
 /*dont give these height so that they will move with the page*/
 
 article{
-	background-color:#E0F5FF;
-	padding:25px;
-	margin-left:220px;
-	margin-right:20px;
-	overflow:visible; 
-	box-shadow: 2px 4px 6px 6px #888888;
-	border-radius: 15px;
+        background-color:#E0F5FF;
+        padding:25px;
+        margin-left:220px;
+        margin-right:20px;
+        overflow:visible; 
+        box-shadow: 2px 4px 6px 6px #888888;
+        border-radius: 15px;
 }
 article img{
-	/**/
+        /**/
 }
 article p{
-	float:center;
-	font-size:20px;
+        float:center;
+        font-size:20px;
 }
 article form{
-	list-style: none;
+        list-style: none;
 }
-aside{
+
+/* HOME PAGE Study Requests ***** */
+#headerHome{
+	/* font-weight:bold; */
+	font-size:30px;
+}
+#request{
+	margin-bottom:20px;
+}
+#Username{
 	float:left;
-	width:155px;
+	width:150px;
 	margin-left:20px;
-	padding:10px;
-	box-shadow: 0px 2px 4px 4px #888888;
-	border-radius:15px;
-	background-color:#FFFEFB;
+	
+	color:rgb(5,5,200);
+	font-size:18px; 
+}
+
+#requestButtons{
+	float:left;
+	width:250px;
+	margin-right:300px;
+}
+.AcceptButton{
+	float:left;
+	margin-right:10px;
+}
+.RejectButton{
+	float:center;
+}
+
+#CourseID{
+	margin-left:25px;
+	width:300px;
+
+	color:rgb(100,100,100);
+	font-size:12px;
+}
+/* *************************** */
+
+
+aside{
+        float:left;
+        width:155px;
+        margin-left:20px;
+        padding:10px;
+        box-shadow: 0px 2px 4px 4px #888888;
+        border-radius:15px;
+        background-color:#FFFEFB;
 }
 aside p{
-	float:center;
-	margin:10px 0px 0px 0px;
-	
+        float:center;
+        margin:10px 0px 0px 0px;
+        
 }
 aside img{
-	/* */
+        /* */
 }
 #password{
 margin-bottom:15px;
@@ -95,66 +136,66 @@ width:100%;
 
 }
 aside form #button{
-	display: block;
-    	margin-left: auto;
-    	margin-right: auto;
-	width:150px;
-	height:45px; 
+        display: block;
+            margin-left: auto;
+            margin-right: auto;
+        width:150px;
+        height:45px; 
 }
 /* Should change this to class textfield */
 #username, #password{
-	width:150px;
+        width:150px;
 }
 
 footer{
-	/*allows wrapper's back to extend to bottom of page*/
-	clear:both;
-	width:100%;
-	height:100px;
-	padding:0 15px 0 15px;
-	text-align: center; 
-	margin: 7% 0 0 0;
+        /*allows wrapper's back to extend to bottom of page*/
+        clear:both;
+        width:100%;
+        height:100px;
+        padding:0 15px 0 15px;
+        text-align: center; 
+        margin: 7% 0 0 0;
 }
 
 /***Typography***/
 h1, h2, h3, h4, h5, h6 {
-	font-family:Georigia, "Times New Roman", Times,serif;
-	font-weight:lighter;
+        font-family:Georigia, "Times New Roman", Times,serif;
+        font-weight:lighter;
 }
 h1{
-	color:rgb(48,69,69);
+        color:rgb(48,69,69);
 }
 h2{
-	color:rgb(51,81,81);
+        color:rgb(51,81,81);
 }
 header h1{
-	color:rgb(255,69,0);
-	font-size:55px;
+        color:rgb(255,69,0);
+        font-size:55px;
 }
 
 ul li label,.helptext{
-	display:block;
-	float:left;
-	width:100%;
-	margin:0px;
-	}
+        display:block;
+        float:left;
+        width:100%;
+        margin:0px;
+        }
 ul {
-	list-style-image:none;
-	list-style:none;
+        list-style-image:none;
+        list-style:none;
     margin-top:0;
     margin-bottom:0;
 }
 
 .helptext{
-	color:#803300;
-	margin-bottom:10px;
-	font-size:14px;
+        color:#803300;
+        margin-bottom:10px;
+        font-size:14px;
 
 }
 
 .about_me{
-	resize: none;
-	vertical-align: top;
+        resize: none;
+        vertical-align: top;
 }
 #schedule{
 overflow:auto; 
@@ -176,9 +217,9 @@ font-weight: 700;
 color: #0000FF;
 }
 .myclasses {
-	font-weight: 700;
-	color: #0000FF;
-	margin-top: 20px;
+        font-weight: 700;
+        color: #0000FF;
+        margin-top: 20px;
 }
 #lecture, #semester, #section, #coursename{
 width:100%;
@@ -186,13 +227,13 @@ float:left;
 margin-bottom: 5px;
 }
 #lecture {
-	margin-top: 60px;
+        margin-top: 60px;
 }
 #section {
-	margin-bottom: 20px;
+        margin-bottom: 20px;
 }
 #data{
-	color: red;
+        color: red;
 }
 .day, #else{
 margin:1px;
@@ -216,30 +257,29 @@ input[type=text],input[type=password], textarea
     padding:2px;
 }
 #forgot, #notuser{
-	margin-left:10px;
-	font-size:14px;
+        margin-left:10px;
+        font-size:14px;
 }
 #notuser{
-	margin-top:15px;
+        margin-top:15px;
 }
 table#table {
-	border-collapse: collapse;
+        border-collapse: collapse;
 }
 table#table td {
-	padding: 25px 20px;
+        padding: 25px 20px;
 }
 table#table th {
-	color: #0000FF;
+        color: #0000FF;
 }
 table#table #results:hover {
-	background-color: #FF8330;
-	color: #0000FF;
+        background-color: #FF8330;
+        color: #0000FF;
 }
 /* firefox */
 @-moz-document url-prefix() {
 #forgot, #notuser{
-	font-size:12px;
+        font-size:12px;
 }
 
 } /* firefox */
-

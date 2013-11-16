@@ -4,33 +4,37 @@
 	{% block title%} home {% endblock %}
 
 	{% block article %}
-		<h1>{{full_name}}'s Home Page</h1><br><br>
-
-		<h3>StudyBuddy Requests</h3>
+		<h1 id="headerHome">{{full_name}}'s Home Page</h1><br>
 		{% for i in test %}
 			{{i}}
 		{% endfor %}	
 
-		<div id="request">
+		<h2 id="h2SReq">Study Requests</h2>
 		{% for request in requestList %}
-			<div class="Username">{{request.requesterUserID}}</div> <div class="CourseID">{{request.courseID}}</div> 
-			<div class="AcceptButton"> 
+		<div id="request">
+			<div id="Username">{{request.requesterUserID}}</div> 
+			
+			<div id="requestButtons">
+				<div class="AcceptButton"> 
 				<form action="/acceptRequest/" method="POST">{%csrf_token%}
 					<input type="hidden" name="requesterUserID" value="{{request.requesterUserID}}"/>
 					<input type="hidden" name="courseID" value="{{request.courseID}}"/>
-					<input type="submit" name="Accept" value="Accept Request"/>
+					<input type="submit" name="Accept" value="Accept"/>
 				</form>
-			</div>
-			<div class="RejectButton">
+				</div>
+				<div class="RejectButton">
 				<form action="/rejectRequest/" method="POST">{%csrf_token%}
 					<input type="hidden" name="requesterUserID" value="{{request.requesterUserID}}"/>
 					<input type="hidden" name="courseID" value="{{request.courseID}}"/>
-					<input type="submit" name="Reject" value="Reject Request"/>
+					<input type="submit" name="Reject" value="Reject"/>
 				</form>
+				</div>
 			</div>
-			<br>
-		{% endfor %}
+
+			<div id="CourseID">{{request.courseID}}</div> 
+			
 		</div>
+		{% endfor %}
 	{% endblock %}
 
 	{% block aside %}
