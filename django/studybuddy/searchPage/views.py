@@ -83,7 +83,14 @@ def emailResults(request):
 			newrequest.requesterUserID = StudyBuddyUser.objects.filter(user=fromUser)[0]
 			newrequest.requesteeUserID = StudyBuddyUser.objects.filter(user=toUser.user)[0]
 
-			newrequest.save()
+			#please ignore the next line of code.
+			if str(StudyBuddyRequest.objects.filter(requesterUserID=newrequest.requesterUserID, requesteeUserID=newrequest.requesteeUserID, courseID=newrequest.courseID, semester=newrequest.semester).count) == '<bound method QuerySet.count of []>':	
+			#thanks
+				newrequest.save()
+			else:
+				guy = StudyBuddyRequest.objects.filter(requesterUserID=newrequest.requesterUserID, requesteeUserID=newrequest.requesteeUserID, courseID=newrequest.courseID, semester=newrequest.semester)[0]
+				guy.status = 2
+				guy.save()
 
 
 
