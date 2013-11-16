@@ -180,3 +180,6 @@ AUTH_PROFILE_MODULE = 'profilePage.StudyBuddyUser'
 
 # The current semester
 CURRENT_SEMESTER = 'Fall 2013'
+AWAKE_HOUR = 8
+SLEEP_HOUR = 22
+GRANULARITY = 5

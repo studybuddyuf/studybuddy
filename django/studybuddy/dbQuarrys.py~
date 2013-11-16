@@ -1,2 +1,0 @@
-def ClassListGivenUserName(un):
-  return UserSchedule.objects.filter(userID=StudyBuddyUser.objects.filter(user__username=un))

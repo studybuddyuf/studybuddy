@@ -1,13 +1,10 @@
+{% extends "base.html" %}
 {% load static %}
-<html>
-	<head/>
-	<body>
-		{% for i in messages %}
-			{{ i }}
+{% block article %}
+		Your request(s) went through. Please enjoy this doge, and use the nav bar to return to your desired page.
 			<br/>
-		{% endfor %}
 
 		<img src="{% static "assets/img/shibe.png" %}" alt=""/>
 
-	</body>
-</html>
+{% endblock %}
+

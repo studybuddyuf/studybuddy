@@ -23,7 +23,8 @@ urlpatterns = patterns('',
     url(r'^register/$', 'createPage.views.register_user'),
 
     # Update Profile Page
-    url(r'^profile/$', 'profilePage.views.update_profile'),
+    url(r'^editprofile/$', 'profilePage.views.update_profile'),
+	url(r'^profile/$', 'profilePage.views.profile'),
 
     # Search
     url(r'^search/$', 'searchPage.views.search'),
@@ -33,8 +34,10 @@ urlpatterns = patterns('',
     url(r'^emailtest/', 'searchPage.views.emailtest'),
     url(r'^emailResults/', 'searchPage.views.emailResults'),
 
-    # Home pgae
+    # Home page
     url(r'^home/$', 'homePage.views.main'),
+    url(r'^acceptRequest/$', 'homePage.views.acceptRequest'),
+    url(r'rejectRequest/$', 'homePage.views.rejectRequest'),
 	
 	# Schedule
 	url(r'^schedule/$', 'schedulePage.views.main'),

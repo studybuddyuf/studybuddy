@@ -4,6 +4,7 @@ from django.core.context_processors import csrf
 from profilePage.models import *
 from django.core.context_processors import csrf
 from django.core.mail import send_mail
+from django.conf import settings
 
 def main(request):
 	c = {}
@@ -77,7 +78,7 @@ def emailResults(request):
 			newrequest = StudyBuddyRequest()
 			newrequest.status = 2
 			#hardcoded
-			newrequest.semester = Semester.objects.filter(semester="Fall 2013")[0]
+			newrequest.semester = Semester.objects.filter(semester=settings.CURRENT_SEMESTER)[0]
 			newrequest.courseID = CourseName.objects.filter(courseID=clas.courseID)[0]
 			newrequest.requesterUserID = StudyBuddyUser.objects.filter(user=fromUser)[0]
 			newrequest.requesteeUserID = StudyBuddyUser.objects.filter(user=toUser.user)[0]
@@ -102,7 +103,7 @@ def doSearch(request):
 		#the user is searching by course, get the relevant proprties from the post
 		courseName = request.POST['Class']
 		#semester is hardcoded, replace later with a function which generates the current semester
-		semester = "Fall 2013"
+		semester = settings.CURRENT_SEMESTER
 
 		#get the relevant course sections
 		courseSectionList = CourseSection.objects.filter(courseID = courseName).filter(semester = semester)
@@ -135,6 +136,11 @@ def doSearch(request):
 			tup.append(string)
 			#and append that tuple to the results
 			resultsList.append(tup)
+
+		#filter our results if the box is checked
+		if request.POST.get('hourMatch') == 'true':
+			resultsList = filter(request, resultsList) #later add a second paremeter based on hours needed
+				
 
 	#this code is if the user is searching based on name
 	elif(request.POST['searchtype']=='name'):
@@ -206,3 +212,89 @@ def doSearch(request):
 	args.update(csrf(request))
 	return render_to_response('searchResult.html', args)
 
+
+def filter (request, resultsList):
+	vanwirer = timeArray(request.user)
+	returnList = []	
+	for result in resultsList:	
+		if match(result[1], vanwirer):
+			returnList.append(result)
+	return returnList
+
+
+def match (candidate, currentFree):
+	counter = 0
+	candidateFree = timeArray(candidate)	
+	for day in my_range(0, 6, 1):
+		for fiveMinute in my_range(0, (settings.SLEEP_HOUR*12-settings.AWAKE_HOUR*12-1), 1):
+			if(candidateFree[day][fiveMinute] and currentFree[day][fiveMinute]):
+				counter += 1
+				if counter == 1*12: #The 1 is the number of hours the user wants to match.
+					return True
+			else:
+				counter = 0
+		counter = 0
+	return False 
+
+#takes a user and makes a free list of their free time
+def timeArray(user):
+	daySlots = []	
+	#constants will be defined in settings file later
+	startTime = settings.AWAKE_HOUR*60
+	endTime = settings.SLEEP_HOUR*60
+	stepSize = settings.GRANULARITY 
+	#make the empty list (all free)
+	for j in my_range(0, 6, 1):
+		timeSlots = []
+		for i in my_range(startTime,endTime, stepSize):
+			timeSlots.append(True)
+		daySlots.append(timeSlots)
+
+	#get a list of the user's time blocks	
+	#get the studybuddyuser from the auth_user
+	studybuddyuser = StudyBuddyUser.objects.filter(user=user)[0]
+
+	#get the userschedules from the studybuddyuser
+	userSchedules = UserSchedule.objects.filter(userID=studybuddyuser)
+
+	#get a list of the schedule objects
+	scheduleObjects = []
+	for userschedule in userSchedules:
+		scheduleObjects.append(userschedule.scheduleID)
+
+	#now, iterate through this list	
+	for scheduleobj in scheduleObjects:
+		if(scheduleobj.mondayStart):
+			fillOut(scheduleobj.mondayStart, scheduleobj.mondayEnd, 0, daySlots)
+		if(scheduleobj.tuesdayStart):
+			fillOut(scheduleobj.tuesdayStart, scheduleobj.tuesdayEnd, 1, daySlots)
+		if(scheduleobj.wednesdayStart):
+			fillOut(scheduleobj.wednesdayStart, scheduleobj.wednesdayEnd, 2, daySlots)
+		if(scheduleobj.thursdayStart):
+			fillOut(scheduleobj.thursdayStart, scheduleobj.thursdayEnd, 3, daySlots)
+		if(scheduleobj.fridayStart):
+			fillOut(scheduleobj.fridayStart, scheduleobj.fridayEnd, 4, daySlots)
+		if(scheduleobj.saturdayStart):
+			fillOut(scheduleobj.saturdayStart, scheduleobj.saturdayEnd, 5, daySlots)
+		if(scheduleobj.sundayStart):
+			fillOut(scheduleobj.sundayStart, scheduleobj.sundayEnd, 6, daySlots)
+
+	return daySlots
+
+#void method that fills out an array based on a certain day
+def fillOut(startTime, endTime, day, daySlots):
+	start = startTime.hour*12
+	start = start + startTime.minute/5
+	end = endTime.hour*12 + endTime.minute/5
+	if start < settings.AWAKE_HOUR*12:
+		start = settings.AWAKE_HOUR*12
+	if end >= settings.SLEEP_HOUR*12:
+		end = settings.SLEEP_HOUR*12-1
+	for i in my_range(0, end-start, 1):
+		daySlots[day][i] = False
+
+#helper method for python's for loops
+def my_range(start, end, step):
+	while start <= end:
+		yield start
+		start+=step

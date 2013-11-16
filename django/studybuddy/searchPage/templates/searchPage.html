@@ -5,7 +5,7 @@
 
 	{% block article %}
 
-
+	<h2>Find Study Buddies</h2>
 	<form name="buddySearch" method="post" action="/doSearch/"> {% csrf_token %} 
 		<ul><li>
 		<input type="radio" name="searchtype" id="course" value ="course" onclick='hide("course")'>Search By Course</input>
@@ -15,16 +15,19 @@
 		</li>
 
 		<fieldset id="fahr">
+		<h3>Select a course:</h3>
 			<li>
-			Class: <select name="Class">
+			<select name="Class">
 			{% for course in list %}
 				<option value="{{ course.courseID }}">{{ course.courseID }}</option>
 			{% endfor %}
 			</select>
+			<input type="checkbox" name = "hourMatch" value = "true"/>
 			</li>
 		</fieldset>
 		
 		<fieldset id="cel">
+		<h3>Enter a buddy's name</h3>
 			<li>
 			<label for="FirstName">First Name:</label>
 			</li>
