@@ -20,7 +20,7 @@
 			<th>Status</th>
 			</tr>
 			{% for list in resultsList %}
-			<tr id="results" onclick= {% for object in list %}  {%if forloop.counter == 3 %} {% if object == "1" %} "select()" onmouseover="" style="cursor: pointer;" {% endif %}{% endif %}{% endfor %}>
+			<tr id="results" onclick= {% for object in list %}  {%if forloop.counter == 3 %} {% if object == "1" or object == "3" %} "select()" onmouseover="" style="cursor: pointer;" {% endif %}{% endif %}{% endfor %}>
 				{% for data in list %}
 
 				{% if forloop.counter == 3 and data == "1" %}
@@ -30,6 +30,10 @@
 				{% elif forloop.counter == 3 and data == "2" %}
 				<td>
 					Pending
+				</td>
+				{% elif forloop.counter == 3 and data == "3" %}
+				<td>
+					Rejected
 				</td>
 				{% elif forloop.counter == 2 %}
 				<td>
@@ -102,7 +106,7 @@
 							var element = document.getElementById((this.cells[0].innerHTML.trim()+' '+this.cells[1].innerHTML.trim()));
 							element.selected = true;
 							this.origColor=this.style.backgroundColor;
-							this.style.backgroundColor='#FF8330';
+							this.style.backgroundColor='#90DAFF';
 							this.style.color='#0000FF';
 							this.highlight=true;
 						}
