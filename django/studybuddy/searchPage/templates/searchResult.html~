@@ -3,14 +3,11 @@
 
 	{% block title%} StudyBuddies {% endblock %}
 
-	{% block nav %}
-		<a href="/home">Home</a> | <a href="/search">Search</a> | Schools | <a href='/profile'>Edit Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
-	{% endblock %}
 	
 	
 	{% block article %}
 
-			<table id="table" border="0" cellspacing="0">
+			<table id="table" border="0">
 			<tr>
 			<th>Class</th>
 			<th>Username</th>
@@ -19,7 +16,7 @@
 			<th>Status</th>
 			</tr>
 			{% for list in resultsList %}
-			<tr onclick= {% for object in list %}  {%if forloop.counter == 3%} {% if object == "1" %} "select()" onmouseover="" style="cursor: pointer;" {% endif %}{%endif%}{% endfor %}>
+			<tr id="results" onclick= {% for object in list %}  {%if forloop.counter == 3 %} {% if object == "1" %} "select()" onmouseover="" style="cursor: pointer;" {% endif %}{% endif %}{% endfor %}>
 				{% for data in list %}
 
 				{% if forloop.counter == 3 and data == "1" %}
@@ -101,7 +98,8 @@
 							var element = document.getElementById((this.cells[0].innerHTML.trim()+' '+this.cells[1].innerHTML.trim()));
 							element.selected = true;
 							this.origColor=this.style.backgroundColor;
-							this.style.backgroundColor='#0000FF';
+							//this.style.backgroundColor='#FF8330';
+							this.style.color='#0000FF';
 							this.highlight=true;
 						}
 						// Unhighlight and unselect
@@ -110,6 +108,7 @@
 							var element = document.getElementById((this.cells[0].innerHTML.trim()+' '+this.cells[1].innerHTML.trim()));
 							element.selected = false;
 							this.style.backgroundColor=this.origColor;
+							this.style.color=this.origColor;
 							this.highlight=false;
 						}
 					}
