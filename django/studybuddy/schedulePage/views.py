@@ -6,10 +6,13 @@ from profilePage.models import *
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def main(request):
     return render_to_response('schedulePage.html', {'full_name': request.user.username, 'scheduleItems': courseInfoUser(request.user.username)})
 
+@login_required
 def edit(request):
 	args = {}
 	args['full_name'] = request.user.username
@@ -18,6 +21,7 @@ def edit(request):
 	args.update(csrf(request))
 	return render_to_response('editSchedulePage.html', args)
 
+@login_required
 def addClass(request):
 	# We have a user ID (via request.user.id), the current semester (via CURRENT_SEMESTER), a course name,
 	# and a section number
@@ -52,6 +56,7 @@ def addClass(request):
 	# Return
 	return edit(request)
 
+@login_required
 def removeClass(request):
 	# We have a user ID (via request.user.id), the current semester (via CURRENT_SEMESTER), and a course name
 	# First, get the course ID based on the course name we received

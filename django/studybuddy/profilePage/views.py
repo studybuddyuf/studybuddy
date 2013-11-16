@@ -29,7 +29,8 @@ def update_profile(request):
 
 
     return render_to_response('editProfilePage.html', args)
-	
+
+@login_required
 def profile(request):
     return render_to_response('profilePage.html', {'full_name': request.user.username, 'phone': getPhone(request.user), 'schoolname': getSchoolName(request.user), 'year': getYear(request.user), 'aboutme': aboutMe(request.user), 'email': getEmail(request.user)})	
 
