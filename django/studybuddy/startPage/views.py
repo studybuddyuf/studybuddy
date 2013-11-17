@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib import auth
 from django.core.context_processors import csrf
+from django.contrib.auth.decorators import login_required
 
 def main(request):
     c = {}

@@ -5,12 +5,14 @@ from profilePage.models import *
 from django.core.context_processors import csrf
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 def main(request):
 	c = {}
 	c.update(csrf(request))
 	return render_to_response('searchPage.html', c)
 
+@login_required
 def search(request):
 	listC = []
 	for e in CourseName.objects.all():
@@ -21,6 +23,7 @@ def search(request):
 	return render_to_response('searchPage.html', args)
 
 #Debugging and Testing code
+@login_required
 def searchResultTest(request):
 	args = {}
 	#classes = request.POST.getlist('class[]')
@@ -30,12 +33,14 @@ def searchResultTest(request):
 	#if len(classes) > 1:
 	#	args['second'] = classes[1]
 	return render_to_response('searchResultTest.html', args)
-	
+
+@login_required
 def emailtest(request):
 	args = {}
 	args.update(csrf(request))
 	return render_to_response('emailtest.html', args)
 
+@login_required
 def emailResults(request):
 	results = request.POST.getlist('class[]')
 	messages = []
@@ -83,7 +88,14 @@ def emailResults(request):
 			newrequest.requesterUserID = StudyBuddyUser.objects.filter(user=fromUser)[0]
 			newrequest.requesteeUserID = StudyBuddyUser.objects.filter(user=toUser.user)[0]
 
-			newrequest.save()
+			#please ignore the next line of code.
+			if str(StudyBuddyRequest.objects.filter(requesterUserID=newrequest.requesterUserID, requesteeUserID=newrequest.requesteeUserID, courseID=newrequest.courseID, semester=newrequest.semester).count) == '<bound method QuerySet.count of []>':	
+			#thanks
+				newrequest.save()
+			else:
+				guy = StudyBuddyRequest.objects.filter(requesterUserID=newrequest.requesterUserID, requesteeUserID=newrequest.requesteeUserID, courseID=newrequest.courseID, semester=newrequest.semester)[0]
+				guy.status = 2
+				guy.save()
 
 
 
@@ -93,6 +105,7 @@ def emailResults(request):
 	args['test'] = test
 	return render_to_response('emailtest.html', args)
 
+@login_required
 def doSearch(request):
 	#initialize lists
 	testing = []

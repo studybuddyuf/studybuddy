@@ -6,9 +6,11 @@ from django.conf import settings
 from django.core.context_processors import csrf
 from profilePage.models import *
 from schedulePage.views import *
+from django.contrib.auth.decorators import login_required
 
 argl = []
 
+@login_required
 def main(request):
 	#List of Study Buddy requests that a user has received
 	list = StudyBuddyRequest.objects.filter(requesteeUserID=request.user, status='2')
@@ -21,6 +23,7 @@ def main(request):
 
 	return render_to_response('homePage.html', args)
 
+@login_required
 def acceptRequest(request):
 	#make the object
 	requester = StudyBuddyUser.objects.filter(user__username=request.POST['requesterUserID'])
@@ -49,6 +52,7 @@ def acceptRequest(request):
 
 	return main(request)
 
+@login_required
 def rejectRequest(request):
 	requester = StudyBuddyUser.objects.filter(user__username=request.POST['requesterUserID'])
 	requestee = StudyBuddyUser.objects.filter(user__username=request.user.username)
@@ -58,6 +62,7 @@ def rejectRequest(request):
 
 	return main(request)
 
+@login_required
 def viewProfile(request):
 	user = StudyBuddyUser.objects.filter(user__username=request.GET['userID'])[0]
 	args = {}
