@@ -6,6 +6,10 @@
 	
 	
 	{% block article %}
+			{% for e in test %}
+				{{ e }}
+
+			{% endfor %}
 
 			<table id="table" border="0">
 			<tr>
@@ -15,8 +19,9 @@
 			<th>Last Name</th>
 			<th>Status</th>
 			</tr>
+			<div id="pagination"</div>
 			{% for list in resultsList %}
-			<tr id="results" onclick= {% for object in list %}  {%if forloop.counter == 3 %} {% if object == "1" %} "select()" onmouseover="" style="cursor: pointer;" {% endif %}{% endif %}{% endfor %}>
+			<tr id="results" onclick= {% for object in list %}  {% if forloop.counter == 3 %} {% if object == "1" or object == "3" %} "select()" onmouseover="" style="cursor: pointer;" {% endif %}{% endif %}{% endfor %}>
 				{% for data in list %}
 
 				{% if forloop.counter == 3 and data == "1" %}
@@ -26,6 +31,10 @@
 				{% elif forloop.counter == 3 and data == "2" %}
 				<td>
 					Pending
+				</td>
+				{% elif forloop.counter == 3 and data == "3" %}
+				<td>
+					Rejected
 				</td>
 				{% elif forloop.counter == 2 %}
 				<td>
@@ -47,7 +56,7 @@
  			{% endfor %}
 			</table>
 
-			<form action="/emailResults/" method="POST">
+			<form action= "/emailResults/" method="POST">
 				{% csrf_token %}
 				<select name = 'class[]' id = 'class' multiple style = 'visibility:hidden;'>
 					{% for e in resultsList %}
@@ -59,11 +68,23 @@
 					{% endfor %}
 				</select>
 				<br/>
-				<input type="submit" name="Send StudyBuddy Requests" value="Send StudyBuddy Requests"/>
+				<input type= "submit" id="button" name="Send StudyBuddy Requests" value="Send StudyBuddy Requests" />
 			</form>
 		<script>
+			window.onload = init;
+
+			function init() {
+
+				if (!document.getElementById) return;
+
+				var submitB = document.getElementById('button');
+				submitB.disabled = true;
+
+			}
+
 			// Unselect all items in "class" select list
-			for(var i = 0; i < document.getElementById("class").options.length; i++) {
+			for(var i = 0; i < document.getElementById("class").options.length; i++) 
+			{
 				document.getElementById("class").options[i].selected = false;
 			}
 
@@ -71,22 +92,10 @@
 			function select() 
 			{
 				var table = document.getElementById('table')
-				/*div.onclick=
-				function () 
-				{
+				
+				var submitB = document.getElementById('button');
+				var count = 0;
 
-					if(!this.highlight)
-					{
-						this.origColor=this.style.backgroundColor;
-						this.style.backgroundColor='#0000FF';
-						this.highlight=true;
-					}
-					else
-					{
-						this.style.backgroundColor=this.origColor;
-						this.highlight=false;
-					}
-				}*/
 				for (var i=0; i<table.rows.length; i++)
 				{
 					table.rows[i].onclick=
@@ -98,9 +107,10 @@
 							var element = document.getElementById((this.cells[0].innerHTML.trim()+' '+this.cells[1].innerHTML.trim()));
 							element.selected = true;
 							this.origColor=this.style.backgroundColor;
-							//this.style.backgroundColor='#FF8330';
+							this.style.backgroundColor='#90DAFF';
 							this.style.color='#0000FF';
 							this.highlight=true;
+							count++;
 						}
 						// Unhighlight and unselect
 						else
@@ -110,6 +120,15 @@
 							this.style.backgroundColor=this.origColor;
 							this.style.color=this.origColor;
 							this.highlight=false;
+							count--;
+						}
+						if(count != 0)
+						{
+							submitB.disabled=false;
+						}
+						else
+						{
+							submitB.disabled=true;
 						}
 					}
 				}
