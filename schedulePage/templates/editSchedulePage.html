@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block title%} home {% endblock %}
+
+	{% block article %}
+
+	{% for i in test %}
+		{{i}}
+	{% endfor %}
+
+    <h1> Remove Class </h1>
+	<form action="/editschedule/removeClass/" method="post" onsubmit="return validateRemove();">  
+	  <select name="scheduleItem" id="scheduleItem">
+    <option selected="selected" disabled>Choose Class:</option>
+	 {% for sItem in scheduleItems%}
+        <option value="{{sItem}}">{{sItem}}</option>
+    {% endfor %}		
+    </select>
+    {% csrf_token %}
+	<input type="submit" value="Remove">
+	</form>
+	
+	<h2> Add Class </h2>
+	
+	<form action="/editschedule/addClass/" method="post" onsubmit="return validateAdd();">
+	<select name="sectionItem" id="sectionItem">
+	<option selected="selected" disabled>Choose Class:</option>
+    {% for sItem in sectionNumbers%}
+            <option value="{{sItem}}">{{sItem}}</option>
+    {% endfor %}	
+    </select>
+    {% csrf_token %}
+	<input type="submit" value="Add">
+	</form>
+
+
+	<h2> Remove Personal Item </h2>
+	<form action="/editschedule/removePersonal/" method="post" onsubmit="return validatePRemove();">
+	<select name="personalItem" id="personalItem">
+	<option selected="selected" disabled>Choose Personal Item:</option>
+	{% for i in personalItems %}
+		<option value="
+		{% for p in i %}
+			{% if forloop.counter == 1 %}	
+				{{ p }}">
+			{% elif forloop.counter == 2 %}
+				{{ p }}
+			{% endif %}
+		{% endfor %}
+		</option>
+	{% endfor %}
+	</select>
+    {% csrf_token %}
+	<input type="submit" value="Remove">
+	</form> 
+
+	<h2> Add Personal Item </h2>
+	<form action="/editschedule/addPersonal/" method="post" onsubmit="return validatePAdd();">
+	Select Day: 
+	M <input type = "checkbox" name = "monday" value = "True"/> 
+	T <input type = "checkbox" name = "tuesday" value = "True"/> 
+	W <input type = "checkbox" name = "wednesday" value = "True"/> 
+	TH <input type = "checkbox" name = "thursday" value = "True"/> 
+	F <input type = "checkbox" name = "friday" value = "True"/> 
+	SA <input type = "checkbox" name = "saturday" value = "True"/> 
+	SU <input type = "checkbox" name = "sunday" value = "True"/> 
+	<br/>
+	Enter Time: 
+	<input type = "text" name = "beginhour" size ="3"/> :  
+	<input type = "text" name = "beginminute" size ="3"/> to  
+	<select name ="beginampm" id="beginampm">
+	<option>AM</option>
+	<option>PM</option>
+	<input type = "text" name = "endhour" size ="3"/> :  
+	<input type = "text" name = "endminute" size ="3"/>
+	<select name ="endampm" id="endampm">
+	<option>AM</option>
+	<option>PM</option>
+	{% csrf_token %}
+	<input type="submit" value="Add">
+	</form> 
+
+    <script>
+        function validateRemove() {
+            if (document.getElementById("scheduleItem").selectedIndex == 0) {
+                alert("Please choose a class to remove");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function validateAdd() {
+            if (document.getElementById("sectionItem").selectedIndex == 0) {
+                alert("Please choose a class to add");
+                return false;
+            } else {
+                return true;
+            }
+		}
+
+        function validatePRemove() {
+            if (document.getElementById("personalItem").selectedIndex == 0) {
+                alert("Please choose a personal item to remove");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+		function validatePAdd(){
+            if (document.getElementById("personItem").selectedIndex == 0) {
+                alert("Please choose a personal item to add");
+                return false;
+            } else {
+                return true;
+            }
+		}
+
+    </script>
+
+	{% endblock %}
+
+	{% block aside %}
+	{% endblock %}

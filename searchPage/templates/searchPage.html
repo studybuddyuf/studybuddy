@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block title%} Search StudyBuddies {% endblock %}
+
+	{% block article %}
+
+	<h2>Find Study Buddies</h2>
+	<form name="buddySearch" method="post" action="/doSearch/"> {% csrf_token %} 
+		<ul><li>
+		<input type="radio" name="searchtype" id="course" value ="course" onclick='hide("course")'>Search By Course</input>
+		</li>
+		<li>
+		<input type="radio" name ="searchtype" value ="name" onclick='hide("name")'>Search By Name</input>
+		</li>
+
+		<fieldset id="fahr">
+		<h3>Select a course:</h3>
+			<li>
+			<select name="Class">
+			{% for course in list %}
+				<option value="{{ course.courseID }}">{{ course.courseID }}</option>
+			{% endfor %}
+			</select>
+			<input type="checkbox" name = "hourMatch" value = "true"/> Filter by matching schedules
+			</li>
+		</fieldset>
+		
+		<fieldset id="cel">
+		<h3>Enter a buddy's name</h3>
+			<li>
+			<label for="FirstName">First Name:</label>
+			</li>
+			<li>
+			<input name="FirstName"></input>
+			</li>
+			<label for="LastName">Last Name:</label>
+			</li>
+			<li>
+			<input name="LastName"></input>
+			</li>
+		</fieldset>
+		
+		<li>
+		<input type="submit" name="Search" value = "Search"></input>
+		</li>
+		</ul>
+	</form>
+
+    <script>
+        document.getElementById("course").click();
+    </script>
+				
+		
+		<div id="test"></div>
+		
+	{% endblock %}
+
+	{% block aside %}
+	{% endblock %}

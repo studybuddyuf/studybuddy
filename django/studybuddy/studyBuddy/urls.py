@@ -44,7 +44,9 @@ urlpatterns = patterns('',
 	url(r'^schedule/$', 'schedulePage.views.main'),
 	url(r'^editschedule/$', 'schedulePage.views.edit'),
 	url(r'^editschedule/removeClass/$', 'schedulePage.views.removeClass'),
-	url(r'^editschedule/addClass/$', 'schedulePage.views.addClass'),
+    url(r'^editschedule/addClass/$', 'schedulePage.views.addClass'),
+    url(r'^editschedule/removePersonal/$', 'schedulePage.views.removePersonal'),
+    url(r'^editschedule/addPersonal/$', 'schedulePage.views.addPersonal'),
 
     # Search Result
     url(r'^searchResult/$', 'searchPage.views.doSearch'),

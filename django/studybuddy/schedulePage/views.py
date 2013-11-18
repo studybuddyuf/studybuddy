@@ -7,6 +7,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+import datetime
+import time
+
 
 @login_required
 def main(request):
@@ -14,12 +17,15 @@ def main(request):
 
 @login_required
 def edit(request):
-	args = {}
-	args['full_name'] = request.user.username
-	args['scheduleItems'] = courseListUser(request.user.id)
-	args['sectionNumbers'] = sectionObjects(request.user.id)
-	args.update(csrf(request))
-	return render_to_response('editSchedulePage.html', args)
+  args = {}
+  args['full_name'] = request.user.username
+  args['scheduleItems'] = courseListUser(request.user.id)
+  args['sectionNumbers'] = sectionObjects(request.user.id)
+  test = []
+  args['personalItems'] = getPersonal(request.user.id, test)
+  args['test'] = test
+  args.update(csrf(request))
+  return render_to_response('editSchedulePage.html', args)
 
 @login_required
 def addClass(request):
@@ -57,35 +63,90 @@ def addClass(request):
 	return edit(request)
 
 @login_required
+def addPersonal(request):
+  scheduleItem = Schedule() 
+  beginhour = int(request.POST['beginhour'])
+  beginminute = int(request.POST['beginminute'])
+  if(request.POST['beginampm']=='PM'):
+    beginhour = beginhour+12
+  endhour = int(request.POST['endhour'])
+  endminute = int(request.POST['endminute'])
+  if(request.POST['endampm']=='PM'):
+    endhour = endhour+12
+  
+  begin = datetime.time(beginhour, beginminute)
+  end = datetime.time(endhour, endminute)
+  
+  if request.POST.get('monday') =='True':
+    scheduleItem.mondayStart = begin
+    scheduleItem.mondayEnd = end
+  if request.POST.get('tuesday') =='True':
+    scheduleItem.tuesdayStart = begin
+    scheduleItem.tuesdayEnd = end
+  if request.POST.get('wednesday') =='True':
+    scheduleItem.wednesdayStart = begin
+    scheduleItem.wednesdayEnd = end
+  if request.POST.get('thursday') =='True':
+    scheduleItem.thursdayStart = begin
+    scheduleItem.thursdayEnd = end
+  if request.POST.get('friday') =='True':
+    scheduleItem.fridayStart = begin
+    scheduleItem.fridayEnd = end
+  if request.POST.get('saturday') =='True':
+    scheduleItem.saturdayStart = begin
+    scheduleItem.saturdayEnd = end
+  if request.POST.get('sunday') =='True':
+    scheduleItem.sundayStart = begin
+    scheduleItem.sundayEnd = end
+
+  scheduleItem.save()
+
+  userScheduleItem = UserSchedule()
+  userScheduleItem.userID = StudyBuddyUser.objects.filter(user=request.user.id)[0]
+  userScheduleItem.scheduleID = Schedule.objects.filter(scheduleID=scheduleItem.scheduleID)[0]
+
+  userScheduleItem.save()
+
+  return edit(request)
+
+@login_required
 def removeClass(request):
-	# We have a user ID (via request.user.id), the current semester (via CURRENT_SEMESTER), and a course name
-	# First, get the course ID based on the course name we received
-	# Next, get all of the schedule IDs for the given course ID and semester
-	# Finally, remove all rows from user schedule which have our current user ID plus the semester IDs we just got
+  # We have a user ID (via request.user.id), the current semester (via CURRENT_SEMESTER), and a course name
+  # First, get the course ID based on the course name we received
+  # Next, get all of the schedule IDs for the given course ID and semester
+  # Finally, remove all rows from user schedule which have our current user ID plus the semester IDs we just got
 
-	# Get the course ID
-	course = CourseName.objects.filter(courseName = request.POST['scheduleItem'])
-	courseID = course[0].courseID
+  # Get the course ID
+  course = CourseName.objects.filter(courseName = request.POST['scheduleItem'])
+  courseID = course[0].courseID
 
-	# Get the sections for this course
-	courseSectionList = CourseSection.objects.filter(courseID = courseID, semester = settings.CURRENT_SEMESTER)
+  # Get the sections for this course
+  courseSectionList = CourseSection.objects.filter(courseID = courseID, semester = settings.CURRENT_SEMESTER)
 
-	# Get the schedule IDs for these courses
-	scheduleIDList = []
-	for courseSection in courseSectionList:
-		# Add the regular schedule ID
-		scheduleIDList.append(courseSection.regularScheduleID.scheduleID)
+  # Get the schedule IDs for these courses
+  scheduleIDList = []
+  for courseSection in courseSectionList:
+    # Add the regular schedule ID
+    scheduleIDList.append(courseSection.regularScheduleID.scheduleID)
 
-		# Add the discussion schedule ID, if it exists
-		if courseSection.discussionScheduleID is not None:
-			scheduleIDList.append(courseSection.discussionScheduleID.scheduleID)
+    # Add the discussion schedule ID, if it exists
+    if courseSection.discussionScheduleID is not None:
+      scheduleIDList.append(courseSection.discussionScheduleID.scheduleID)
 
-	# Remove the user schedule rows
-	for scheduleID in scheduleIDList:
-		UserSchedule.objects.filter(userID = request.user.id, scheduleID = scheduleID).delete()
+  # Remove the user schedule rows
+  for scheduleID in scheduleIDList:
+    UserSchedule.objects.filter(userID = request.user.id, scheduleID = scheduleID).delete()
 
-	# Return
-	return edit(request)
+  # Return
+  return edit(request)
+
+@login_required
+def removePersonal(request):
+  personalSchedule = Schedule.objects.filter(scheduleID=request.POST['personalItem'])[0]
+  personalUserSchedule = UserSchedule.objects.filter(scheduleID=personalSchedule)[0]  
+  personalSchedule.delete()
+  personalUserSchedule.delete()
+  return edit(request)
 
 def sectionObjects(userid):
 	sectionList = CourseSection.objects.all()
@@ -217,3 +278,66 @@ def scheduleTime(scheduleID):
   for e in listAll:
     list.append(e)
   return list
+
+#kind of like the method above
+def getPersonal(un, test):
+  scheduleItems = UserSchedule.objects.filter(userID=un)
+  personal = []
+  for item in scheduleItems:
+    try:
+      CourseSection.objects.get(regularScheduleID=item.scheduleID)
+    except CourseSection.DoesNotExist:
+      try:
+        CourseSection.objects.get(discussionScheduleID=item.scheduleID)
+      except CourseSection.DoesNotExist:
+        tup = []
+        tup.append(str(item.scheduleID.scheduleID))
+        tup.append(lookGood(item.scheduleID)) 
+        personal.append(tup)  
+  return personal
+
+def lookGood(item):
+  return_string = ""
+  if(item.mondayStart):
+    return_string += "M: "
+    return_string += str(item.mondayStart)
+    return_string += " to "
+    return_string += str(item.mondayEnd)
+    return_string += " "
+  if(item.tuesdayStart):
+    return_string += "T: "
+    return_string += str(item.tuesdayStart)
+    return_string += " to "
+    return_string += str(item.tuesdayEnd)
+    return_string += " "
+  if(item.wednesdayStart):
+    return_string += "W: "
+    return_string += str(item.wednesdayStart)
+    return_string += " to "
+    return_string += str(item.wednesdayEnd)
+    return_string += " "
+  if(item.thursdayStart):
+    return_string += "TH: "
+    return_string += str(item.thursdayStart)
+    return_string += " to "
+    return_string += str(item.thursdayEnd)
+    return_string += " "
+  if(item.fridayStart):
+    return_string += "F: "
+    return_string += str(item.fridayStart)
+    return_string += " to "
+    return_string += str(item.fridayEnd)
+    return_string += " "
+  if(item.saturdayStart):
+    return_string += "SA: "
+    return_string += str(item.saturdayStart)
+    return_string += " to "
+    return_string += str(item.saturdayEnd)
+    return_string += " "
+  if(item.sundayStart):
+    return_string += "SU: "
+    return_string += str(item.sundayStart)
+    return_string += " to "
+    return_string += str(item.sundayEnd)
+    return_string += " "
+  return return_string

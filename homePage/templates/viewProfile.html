@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+	{% block title%} view profile {% endblock %}
+
+	{% block article %}
+		<h1>Viewing {{user}}'s profile</h1><br>
+
+		<b>Name:</b> {{user.user.first_name}} {{user.user.last_name}}<br>
+		<b>Phone:</b> {{user.phone}}<br>
+		<b>Email:</b> <a href="mailto:{{user.user.email}}">{{user.user.email}}</a><br>
+		<b>Year:</b> {{user.year}}<br>
+		<b>About me:</b> {{user.about_me}}
+
+
+		<br/><br/><br/><br/><b>{{user}}'s schedule</b><br/>
+		{% include "scheduleDetails.html" %}
+
+	{% endblock %}
+
+	{% block aside %}
+	{% endblock %}

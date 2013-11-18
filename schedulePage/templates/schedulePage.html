@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%} home {% endblock %}
+
+{% block aside %}
+<a href="/editschedule">Edit Schedule</a>
+{% endblock %}
+{% block edSched %}
+{% endblock %}        
+   
+{% block article %}
+    <div class="schname">{{full_name}}'s Schedule</div>
+	<div class="myclasses"> My classes </div>
+	{% include "scheduleDetails.html" %}
+{% endblock %}
+
