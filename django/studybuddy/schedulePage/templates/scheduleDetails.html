@@ -10,6 +10,7 @@
 	{%elif "Section:" in info %}
 	 <div class="info" id="section">{{info}}</div>
 {%elif "Monday" in info %}
+	<div id="scheduleTable">
 	 <div class="day" id="monday">{{info}}</div>
 {%elif "Tuesday" in info %}
 	 <div class="day" id="tuesday">{{info}}</div>
@@ -23,9 +24,13 @@
 	 <div class="day" id="saturday">{{info}}</div>
 {%elif "Sunday" in info %}
 	 <div class="day" id="sunday">{{info}}</div>
-{%else %}
+{%elif "None" in info %}
+	 <div class="infodata" id="else">-</div>
+{%else  %}
 	 <div class="infodata" id="else">{{info}}</div>
 			{%endif%}
 		{% endfor %}
+		</div>
 	{% endfor %}
 </div>
+

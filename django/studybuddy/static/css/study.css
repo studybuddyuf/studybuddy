@@ -30,11 +30,12 @@ nav{
         
 }
 
-#bodywrapper{
+.center{
    width:960px;
    margin:0 auto;
    text-align:left;
 }
+
 nav a{
         font-family: 'Freckle Face', cursive;
         font-weight:bold;
@@ -53,7 +54,7 @@ text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
 /*dont give these height so that they will move with the page*/
 aside, article{ 
     /*background: and border */
-    background: linear-gradient(to bottom, #F3FAFF, white 50px, white, #FCFEFF );
+    background: linear-gradient(to bottom, #F3FAFF, #FCFEFF 20px, white, #FCFEFF );
     box-shadow: 2px 4px 4px 4px #888888;
     border-radius: 8px;
 }
@@ -207,7 +208,7 @@ padding:5px;
 
 }
 #lecture{
-margin-top:10px;
+margin-top:20px;
 
 }
 .schname{
@@ -228,25 +229,29 @@ width:100%;
 float:left;
 margin-bottom: 5px;
 }
-#lecture {
-        margin-top: 60px;
-}
+
 #section {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
 }
 #data{
         color: red;
 }
-.day, #else{
-margin:1px;
+#scheduleTable{
+    width:98%;
+    margin:0 auto;
+   text-align:left;
+}
+.day, .infodata{
 padding:0px 5px 0px 5px;
-width:90px;
-margin:0px;
+width:80px;
 float:left;
-box-shadow: 0px 0px 1px 1px #888888; 
+//box-shadow: 0px 0px 2px 2px #888888; 
+font-size: 14px;
+margin:0px;
+text-align: center;
 }
 .day{
-background-color:#FF8330;
+background-color:#FFA366;
 }
 #else{
 background-color:#F0FAFF;
