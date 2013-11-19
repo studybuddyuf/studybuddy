@@ -8,28 +8,30 @@
 	{% block article %}
 
 	<div class="header" id="searchBuddies">Find Study Buddies</div>
+	<div id="searchForm">
 	<form name="buddySearch" method="post" action="/doSearch/"> {% csrf_token %} 
-		<ul><li>
+		<div class="radioButton" id="searchRadioCourse">
 		<input type="radio" name="searchtype" id="course" value ="course" onclick='hide("course")'>Search By Course</input>
-		</li>
-		<li>
+		</div>
+		<div class="radioButton" id="searchRadioName">
 		<input type="radio" name ="searchtype" value ="name" onclick='hide("name")'>Search By Name</input>
-		</li>
+		</div>
 
 		<fieldset id="fahr">
 		<h3>Select a course:</h3>
-			<li>
+			<div class="selects" id="searchCourseId">
 			<select name="Class">
 			{% for course in list %}
 				<option value="{{ course.courseID }}">{{ course.courseID }}</option>
 			{% endfor %}
 			</select>
 			<input type="checkbox" name = "hourMatch" value = "true"/>
-			</li>
+			</div>
 		</fieldset>
 		
 		<fieldset id="cel">
 		<h3>Enter a buddy's name</h3>
+			<ul>
 			<li>
 			<label for="FirstName">First Name:</label>
 			</li>
@@ -44,11 +46,11 @@
 		</fieldset>
 		
 		<li>
-		<input type="submit" name="Search" value = "Search"></input>
+		<input type="submit" name="Search" value = "Search" class="buttons"/>
 		</li>
 		</ul>
 	</form>
-
+	</div>
     <script>
         document.getElementById("course").click();
     </script>

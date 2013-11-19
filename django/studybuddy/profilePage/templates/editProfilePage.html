@@ -7,11 +7,14 @@
         {{field.error}}
     {% endfor %}
 
-	<h2> Edit Profile </h2>
+	<div class="header" id="editProfileHeader"> Edit Profile </div>
 	<form action = "/editprofile/" method="post">{%csrf_token%}
-	<ul>{{form1.as_ul}}</ul>
-	<ul>{{form2.as_ul}}</ul>
-
-	<input type="submit" value="Save" />
+	<ul>
+	{{form1.as_ul}}
+	{{form2.as_ul}}
+	<li>
+	<input type="submit" value="Save" class="buttons" />
+	</li>
+	</ul>
 	</form>
 {% endblock %}
