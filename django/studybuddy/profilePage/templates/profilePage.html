@@ -1,20 +1,30 @@
-{% extends "base.html" %}
+{% extends "friends.html" %}
+
 
 {% block title%} profile {% endblock %}
 
-{% block aside %}
-<a href="/editprofile">Edit Profile</a>
-{% endblock %}
+
 
 {% block article %}
-	<h1> <font color=orange>Profile</font> </h1>
-	<div><font color=blue>Email: {{email}}</font>  </div>
-	<br>
-	<div><font color=blue>Phone number: {{phone}}</font>  </div>
-	<br>
-	<div><font color=blue>School: {{schoolname}}</font>  </div>
-	<br>
-	<div><font color=blue>Year: {{year}}</font>  </div>
-	<br>
-	<div><font color=blue>About me: {{aboutme}}</font>  </div>
+<div class="editLinks" id="editProfileLink">
+<a href="/editprofile">Edit Profile</a>
+</div>
+	<div class="header" id="profileHeader">
+	Profile
+	</div>
+	<div class="profileItem" id="profileEmail">
+	Email: {{email}}
+	</div>
+	<div class="profileItem" id="profilePhone">
+	Phone number: {{phone}}
+	</div>
+	<div class="profileItem" id="profileSchool">
+	School: {{schoolname}}
+	</div>
+	<div class="profileItem" id="profileYear">
+	Year: {{year}}
+	</div>
+	<div class="profileItem" id="profileAbout">
+	About me: {{aboutme}}
+	</div>
 {% endblock %}

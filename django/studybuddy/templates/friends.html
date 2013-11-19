@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block aside %}
+<div class="asideList" id="friendsHeader">Friends</div>
+{% for i in friends %}
+<div class="asideList" id="friendItem">
+<a href="/viewProfile?userID={{i.requesteeUserID}}">{{i.requesteeUserID}}</a>
+</div>
+{% endfor %}
+{% endblock %}

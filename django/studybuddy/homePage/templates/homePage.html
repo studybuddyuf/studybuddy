@@ -1,15 +1,14 @@
-{% extends "base.html" %}
+{% extends "friends.html" %}
 {% load static %}
 
 	{% block title%} home {% endblock %}
 
 	{% block article %}
-		<h1 id="headerHome">{{full_name}}'s Home Page</h1><br>
-		{% for i in test %}
-			{{i}}
-		{% endfor %}	
+		<div class="header" id="headerHome">
+		{{full_name}}'s Home Page
+		</div>	
 
-		<h2 id="h2SReq">Study Requests</h2>
+		<div class="font1" id="StudyRequests">Study Requests</div>
 		{% for request in requestList %}
 		<div id="request">
 			<div id="Username">{{request.requesterUserID}}</div> 
@@ -37,12 +36,4 @@
 		{% endfor %}
 	{% endblock %}
 
-	{% block aside %}
-		<div id="buddies">
-		<dl>StudyBuddies
-			{% for i in friends %}
-				<br/><a href="/viewProfile?userID={{i.requesteeUserID}}">{{i.requesteeUserID}}</a>
-			{% endfor %}
-		</dl>
-		</div>
-	{% endblock %}
+

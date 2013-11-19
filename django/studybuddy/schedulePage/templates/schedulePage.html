@@ -1,17 +1,18 @@
-{% extends "base.html" %}
+{% extends "friends.html" %}
 {% load static %}
 
 {% block title%} home {% endblock %}
 
-{% block aside %}
-<a href="/editschedule">Edit Schedule</a>
-{% endblock %}
 {% block edSched %}
 {% endblock %}        
    
 {% block article %}
-    <div class="schname">{{full_name}}'s Schedule</div>
-	<div class="myclasses"> My classes </div>
+<div class="editLinks" id="editScheduleLink">
+<a href="/editschedule">Edit Schedule</a>
+</div>
+    <div class="header" id="scheduleHeader">{{full_name}}'s Schedule</div>
+	<div class="font1" id="myClasses"> My classes </div>
+	
 	{% include "scheduleDetails.html" %}
 {% endblock %}
 

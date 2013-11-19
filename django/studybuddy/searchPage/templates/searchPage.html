@@ -1,11 +1,13 @@
-{% extends "base.html" %}
+{% extends "friends.html" %}
 {% load static %}
 
-	{% block title%} Search StudyBuddies {% endblock %}
+	{% block title%} Search Friends {% endblock %}
+
+	
 
 	{% block article %}
 
-	<h2>Find Study Buddies</h2>
+	<div class="header" id="searchBuddies">Find Study Buddies</div>
 	<form name="buddySearch" method="post" action="/doSearch/"> {% csrf_token %} 
 		<ul><li>
 		<input type="radio" name="searchtype" id="course" value ="course" onclick='hide("course")'>Search By Course</input>
@@ -22,7 +24,7 @@
 				<option value="{{ course.courseID }}">{{ course.courseID }}</option>
 			{% endfor %}
 			</select>
-			<input type="checkbox" name = "hourMatch" value = "true"/> Filter by matching schedules
+			<input type="checkbox" name = "hourMatch" value = "true"/>
 			</li>
 		</fieldset>
 		
@@ -56,5 +58,3 @@
 		
 	{% endblock %}
 
-	{% block aside %}
-	{% endblock %}
