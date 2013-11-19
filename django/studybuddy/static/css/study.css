@@ -1,6 +1,6 @@
 body{
-        background-image:url('../img/blueg-c.png');
-        background-repeat:repeat-x;
+        background: linear-gradient(to bottom, #99CCFF, #E0F0FF 80px, #FCFEFF 600px, #FCFEFF );
+        background-attachment: fixed;
         font-family:Tahoma;
         margin:0px;
         overflow-x:hidden;
@@ -30,8 +30,10 @@ nav{
         
 }
 
-#edsched{
-        margin:0px;
+#bodywrapper{
+   width:960px;
+   margin:0 auto;
+   text-align:left;
 }
 nav a{
         font-family: 'Freckle Face', cursive;
@@ -49,15 +51,17 @@ color:orange;
 text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
 }
 /*dont give these height so that they will move with the page*/
-
+aside, article{ 
+    /*background: and border */
+    background: linear-gradient(to bottom, #F3FAFF, white 50px, white, #FCFEFF );
+    box-shadow: 2px 4px 4px 4px #888888;
+    border-radius: 8px;
+}
 article{
-        background-color:#E0F5FF;
         padding:25px;
         margin-left:220px;
         margin-right:20px;
         overflow:visible; 
-        box-shadow: 2px 4px 6px 6px #888888;
-        border-radius: 15px;
 }
 article img{
         /**/
@@ -115,10 +119,8 @@ aside{
         width:155px;
         margin-left:20px;
         padding:10px;
-        box-shadow: 0px 2px 4px 4px #888888;
-        border-radius:15px;
-        background-color:#FFFEFB;
-}
+    }
+    
 aside p{
         float:center;
         margin:10px 0px 0px 0px;

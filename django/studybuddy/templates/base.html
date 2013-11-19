@@ -16,20 +16,20 @@
         	<div id="titleheader"></div>
         	<div id="logodiv"></div>
    	</div>
-	
-	<div id="navbeg"></div>
+
 	<nav>
+	<div class="center" id="links">
 		{% block nav %}
             <a href="/home">Home</a> | <a href='/search'>Search</a> | <a href='/profile'>Profile</a> | <a href='/schedule'>Schedule</a> | <a href="/logout"="_blank">Logout</a>
         {% endblock %}
+        </div>
 	</nav>
-	<div id="navend"></div>
-	<div id="bodywrapper">
-	<div id="edsched">
-		{% block edSched %}{% endblock %}
-	</div>
+	
+	<div class="center" id="bodywrapper">
 	<aside>
-		{% block aside %}{% endblock %}
+	{% block aside %}
+	<div id="friends">Friends</div>
+	{% endblock %}
 	</aside>
 	<article>
 	{% block article%}{% endblock %}
@@ -37,10 +37,11 @@
 	</div>
 	<footer>
 	{% block footer %}
-		Copyright 2013 DungeonTech <br/>
+		Copyright DungeonTech <br/>
 		<a href="/admin/">Admin</a><br/>
-		<a href="mailto:StudyBuddyUF@gmail.com">Email us</a>
+		<a href="mailto:someone@ufl.edu"><img src="{% static 			"assets/img/email.png" %}" alt="email us at"/></a>
 	{% endblock %}
 	</footer>
 </body>
 </html>
+
